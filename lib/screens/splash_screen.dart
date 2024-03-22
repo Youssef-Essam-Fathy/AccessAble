@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:codesign_app/shared/resources/image_assets.dart';
-import 'package:codesign_app/shared/resources/views_manager.dart';
+import 'package:accessable/shared/resources/image_assets.dart';
+import 'package:accessable/shared/resources/views_manager.dart';
 import 'package:flutter/material.dart';
 
 import '../shared/resources/app_constants.dart';

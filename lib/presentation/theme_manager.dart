@@ -1,7 +1,6 @@
-import 'package:codesign_app/presentation/font_manager.dart';
-import 'package:codesign_app/presentation/values_manager.dart';
+import 'package:accessable/presentation/font_manager.dart';
+import 'package:accessable/presentation/values_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:codesign_app/presentation/styles_manager.dart';
 import 'color_manager.dart';
 
 ThemeData getApplicationTheme(){

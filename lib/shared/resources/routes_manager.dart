@@ -1,10 +1,12 @@
-import 'package:codesign_app/pages/forget_password_page.dart';
-import 'package:codesign_app/pages/home_page.dart';
-import 'package:codesign_app/pages/sign_in_page.dart';
-import 'package:codesign_app/pages/sign_up_page.dart';
-import 'package:codesign_app/screens/splash_screen.dart';
-import 'package:codesign_app/shared/resources/strings_manager.dart';
+
+import 'package:accessable/pages/forget_password_page.dart';
+import 'package:accessable/pages/home_page.dart';
+import 'package:accessable/pages/sign_in_page.dart';
+import 'package:accessable/pages/sign_up_page.dart';
+import 'package:accessable/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'strings_manager.dart';
 
 // to add new page follow that 3 steps
 // 1 - add String variable

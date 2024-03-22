@@ -1,4 +1,4 @@
-import 'package:codesign_app/presentation/theme_manager.dart';
+import 'package:accessable/presentation/theme_manager.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/splash_screen.dart';
