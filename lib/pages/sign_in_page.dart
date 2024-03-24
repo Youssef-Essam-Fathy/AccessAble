@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../shared/resources/image_assets.dart';
 import 'forget_password_page.dart';
 class SignInPage extends StatefulWidget {
