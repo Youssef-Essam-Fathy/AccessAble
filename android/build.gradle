@@ -24,7 +24,7 @@ subprojects {
 }
 subprojects {
     project.evaluationDependsOn(':app')
-}You are applying Flutter's main Gradle plugin imperatively using the apply script method, which is deprecated and will be removed in a future release. Migrate to applying Gradle plugins with the declarative plugins block: https://flutter.dev/go/flutter-gradle-plugin-apply
+}
 
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
