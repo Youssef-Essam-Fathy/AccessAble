@@ -1,3 +1,4 @@
+import 'package:accessable/presentation/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
@@ -15,7 +16,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
     return ZoomDrawer(
       style: DrawerStyle.style1,
       menuScreen: Container(
-        color: Colors.white,
+        color: ColorManager.maximumBlueGreen,
         child: const Center(
           child: Text("Menu Screen"),
         ),
@@ -23,7 +24,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
       mainScreen: Container(
         color: Colors.white,
         child: const Center(
-          child: Text("Main Screen"),
+          child: Text("AccessAble"),
         ),
       ),
       borderRadius: 24.0,
