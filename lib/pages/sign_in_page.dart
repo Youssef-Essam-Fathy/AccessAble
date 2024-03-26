@@ -105,20 +105,20 @@ class _SignInPageState extends State<SignInPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ForgetPasswordPage(),
+                        builder: (context) => const ForgetPasswordPage(),
                       ),
                     );
                   },
                 ),
               ),
               const SizedBox(height: 10.0),
-              Container(
+              SizedBox(
                 width: 200,
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formkey.currentState!.validate()) {
-                        Navigator.of(context).pushNamed(Routes.mainRout);
+                        Navigator.of(context).pushNamed(Routes.mainRoute);
                     }
                   },
                   style: ElevatedButton.styleFrom(
@@ -134,6 +134,21 @@ class _SignInPageState extends State<SignInPage> {
                 ),
               ),
               ),
+              const SizedBox(height: 20,),
+              Center(
+                child: Row(
+                  children: [
+                    const Text('Don\'t have an account?'),
+                    const SizedBox(width: 2,),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/register');
+                      },
+                      child: const Text('Sign Up'),
+                    ),
+                  ],
+                ),
+              )
             ],
           )),
         ),
