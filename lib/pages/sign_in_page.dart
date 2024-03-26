@@ -1,3 +1,5 @@
+import 'package:accessable/presentation/color_manager.dart';
+import 'package:accessable/shared/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
 import '../shared/resources/image_assets.dart';
 import 'forget_password_page.dart';
@@ -92,11 +94,11 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               Container(
                 alignment: AlignmentDirectional.bottomEnd,
                 child: TextButton(
-                  child: Text(
+                  child: const Text(
                     'Forget password?',
                   ),
                   onPressed: () {
@@ -108,6 +110,29 @@ class _SignInPageState extends State<SignInPage> {
                     );
                   },
                 ),
+              ),
+              const SizedBox(height: 10.0),
+              Container(
+                width: 200,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_formkey.currentState!.validate()) {
+                        Navigator.of(context).pushNamed(Routes.mainRout);
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: ColorManager.maximumBlueGreen,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                  ),
+                  child: const Text('Sign In',
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                ),
+              ),
               ),
             ],
           )),
