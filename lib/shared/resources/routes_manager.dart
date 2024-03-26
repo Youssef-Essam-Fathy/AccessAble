@@ -1,4 +1,5 @@
 
+import 'package:accessable/pages/customer_sign_up_page.dart';
 import 'package:accessable/pages/forget_password_page.dart';
 import 'package:accessable/pages/home_page.dart';
 import 'package:accessable/pages/sign_in_page.dart';
@@ -6,6 +7,9 @@ import 'package:accessable/pages/sign_up_page.dart';
 import 'package:accessable/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
+import 'package:accessable/pages/business_sign_up_page.dart';
+import 'package:accessable/pages/specify_user_page.dart';
+import 'package:accessable/pages/individual_sign_up_page.dart';
 import 'strings_manager.dart';
 
 // to add new page follow that 3 steps
@@ -19,6 +23,10 @@ class Routes {
   static const String registerRout = "/register";
   static const String forgotPasswordRout = "/forgetPassword";
   static const String mainRout = "/main";
+  static const String specifyUserPage = "/specifyUserPage";
+  static const String customerSignUp = "/customerSignUp";
+  static const String businessSignUp = "/businessSignUp";
+  static const String individualSignUp = "/individualSignUp";
 }
 
 class RouteGenerator {
@@ -34,6 +42,14 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ForgetPasswordPage());
       case Routes.mainRout:
         return MaterialPageRoute(builder: (_) => const HomePage());
+      case Routes.specifyUserPage:
+        return MaterialPageRoute(builder: (_) => const SpecifyUserPage());
+      case Routes.customerSignUp:
+        return MaterialPageRoute(builder: (_) => const CustomerSignUpPage());
+      case Routes.businessSignUp:
+        return MaterialPageRoute(builder: (_) => const BusinessSignUpPage());
+      case Routes.individualSignUp:
+        return MaterialPageRoute(builder: (_) => const IndividualSignUp());
       default:
         return _unDefinedRout();
     }

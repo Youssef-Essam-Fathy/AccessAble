@@ -142,7 +142,7 @@ class _SignInPageState extends State<SignInPage> {
                         const SizedBox(width: 2,),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/register');
+                            Navigator.pushNamed(context, '/specifyUserPage');
                           },
                           child: const Text('Sign Up'),
                         ),
