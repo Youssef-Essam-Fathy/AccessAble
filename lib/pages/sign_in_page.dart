@@ -3,6 +3,7 @@ import 'package:accessable/shared/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
 import '../shared/resources/image_assets.dart';
 import 'forget_password_page.dart';
+
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
 
@@ -31,40 +32,40 @@ class _SignInPageState extends State<SignInPage> {
                 fit: BoxFit.cover,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal:40.0),
+                padding: const EdgeInsets.symmetric(horizontal: 40.0),
                 child: TextFormField(
-                    validator: (email) {
-                      if (email!.isEmpty) {
-                        return 'You must enter your email';
-                      }
-                      return null;
-                    },
-                    onChanged: (email) => _email = email,
-                    controller: emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    onFieldSubmitted: (String value) {
-                      print(value);
-                    },
-                    // onChanged: (String value) {
-                    //   print(value);
-                    // },
-                    decoration: const InputDecoration(
-                      labelText: 'Email ',
-                      prefixIcon: Icon(
-                        Icons.email_sharp,
-                        color: Colors.black,
-                      ),
-                      border: OutlineInputBorder(
+                  validator: (email) {
+                    if (email!.isEmpty) {
+                      return 'You must enter your email';
+                    }
+                    return null;
+                  },
+                  onChanged: (email) => _email = email,
+                  controller: emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  onFieldSubmitted: (String value) {
+                    print(value);
+                  },
+                  // onChanged: (String value) {
+                  //   print(value);
+                  // },
+                  decoration: const InputDecoration(
+                    labelText: 'Email ',
+                    prefixIcon: Icon(
+                      Icons.email_sharp,
+                      color: Colors.black,
+                    ),
+                    border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                      ),
                     ),
                   ),
-              ),
-                const SizedBox(
-                  height: 25.0,
                 ),
+              ),
+              const SizedBox(
+                height: 25.0,
+              ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal:40.0),
+                padding: const EdgeInsets.symmetric(horizontal: 40.0),
                 child: TextFormField(
                   validator: (password) {
                     if (password!.isEmpty) {
@@ -87,7 +88,10 @@ class _SignInPageState extends State<SignInPage> {
                       Icons.lock_sharp,
                       color: Colors.black,
                     ),
-                    suffixIcon: Icon(Icons.remove_red_eye_sharp,color: Colors.black,),
+                    suffixIcon: Icon(
+                      Icons.remove_red_eye_sharp,
+                      color: Colors.black,
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(25.0)),
                     ),
@@ -112,34 +116,42 @@ class _SignInPageState extends State<SignInPage> {
                 ),
               ),
               const SizedBox(height: 10.0),
-              SizedBox(
-                width: 200,
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (_formkey.currentState!.validate()) {
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                child: SizedBox(
+                  width: double.infinity, // Add this line
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_formkey.currentState!.validate()) {
                         Navigator.of(context).pushNamed(Routes.mainRoute);
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: ColorManager.maximumBlueGreen,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25),
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ColorManager.maximumBlueGreen,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                      ),
                     ),
-                  ),
-                  child: const Text('Sign In',
+                    child: Text(
+                      'Sign In',
                       style: TextStyle(
                         fontSize: 20,
+                        color: ColorManager.white,
                       ),
+                    ),
+                  ),
                 ),
               ),
-              ),
-              const SizedBox(height: 20,),
               Center(
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+
                   children: [
                     const Text('Don\'t have an account?'),
-                    const SizedBox(width: 2,),
+                    const SizedBox(
+                      width: 2,
+                    ),
                     TextButton(
                       onPressed: () {
                         Navigator.pushNamed(context, '/register');
