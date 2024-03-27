@@ -1,7 +1,7 @@
 import 'package:accessable/presentation/color_manager.dart';
 import 'package:accessable/shared/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
-import '../shared/resources/image_assets.dart';
+import 'package:accessable/shared/resources/assets_manager.dart';
 import 'forget_password_page.dart';
 
 class SignInPage extends StatefulWidget {
@@ -31,7 +31,7 @@ class _SignInPageState extends State<SignInPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      AssetsManager.signInLogo,
+                      ImageAssets.signInLogo,
                       fit: BoxFit.cover,
                     ),
                     Padding(
