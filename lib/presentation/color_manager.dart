@@ -14,6 +14,8 @@ class ColorManager
   static Color viola = const Color(0xffC58CBC);
   static Color blizzardBlue = const Color(0xffAAD9EE);
   static Color white = const Color(0xffFFFFFF);
+  static Color red400 = const Color(0xffD55545);
   static Color grey = const Color(0xff808080);
+
 
 }

@@ -1,9 +1,11 @@
 
 import 'package:accessable/pages/customer_sign_up_page.dart';
+
 import 'package:accessable/pages/forget_password_page.dart';
 import 'package:accessable/pages/home_page.dart';
+import 'package:accessable/pages/notifications_page.dart';
+import 'package:accessable/pages/profile_page.dart';
 import 'package:accessable/pages/sign_in_page.dart';
-import 'package:accessable/pages/sign_up_page.dart';
 import 'package:accessable/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -27,6 +29,9 @@ class Routes {
   static const String customerSignUp = "/customerSignUp";
   static const String businessSignUp = "/businessSignUp";
   static const String individualSignUp = "/individualSignUp";
+  static  const String notificationsRoute = "/notifications";
+  static const String profileRoute = "/profile";
+
 }
 
 class RouteGenerator {
@@ -36,8 +41,6 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const SplashPage());
       case Routes.loginRout:
         return MaterialPageRoute(builder: (_) => const SignInPage());
-      case Routes.registerRout:
-        return MaterialPageRoute(builder: (_) => const SignUpPage());
       case Routes.forgotPasswordRout:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordPage());
       case Routes.mainRout:
@@ -50,6 +53,11 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const BusinessSignUpPage());
       case Routes.individualSignUp:
         return MaterialPageRoute(builder: (_) => const IndividualSignUp());
+      case Routes.notificationsRoute:
+        return MaterialPageRoute(builder: (_) => const NotificationsPage());
+      case Routes.profileRoute:
+        return MaterialPageRoute(builder: (_) => const ProfilePage());
+
       default:
         return _unDefinedRout();
     }

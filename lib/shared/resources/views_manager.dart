@@ -26,7 +26,10 @@ class ViewsManager {
   static void openHomeView(context) {
     _openViewNoBack(context, Routes.mainRout);
   }
-
+  // notifications
+  static void openNotificationsView(context) {
+    _openViewNoBack(context, Routes.notificationsRoute);
+  }
   // login
   static void openLoginMain(context) {
     _openViewNoBack(context, Routes.loginRout);
