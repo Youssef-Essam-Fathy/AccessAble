@@ -19,7 +19,7 @@ class SpecifyUserPage extends StatelessWidget {
         body: ListView(
           children: <Widget>[
             Image.asset(
-              'assets/images/accessable_logo.png',
+              'assets/images/accessable_logo_1.png',
               width: MediaQuery.of(context).size.width,
               fit: BoxFit.cover,
             ),
