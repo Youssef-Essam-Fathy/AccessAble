@@ -1,4 +1,3 @@
-import 'package:accessable/presentation/color_manager.dart';
 import 'package:flutter/material.dart';
 
 class SpecifyUserPage extends StatefulWidget {
@@ -21,7 +20,7 @@ class _SpecifyUserPageState extends State<SpecifyUserPage> {
             },
             icon: const Icon(Icons.arrow_back_ios, color: Colors.black
           ),
-        ),
+        ),),
         body: ListView(
           children: <Widget>[
             Container(
@@ -96,7 +95,7 @@ class _SpecifyUserPageState extends State<SpecifyUserPage> {
                         const Text(
                           'Business',
                           style: TextStyle(
-                            color: ColorManager.primary,
+                            color: Colors.white30,
                             decoration: TextDecoration.underline,
                           ),
                         ),
