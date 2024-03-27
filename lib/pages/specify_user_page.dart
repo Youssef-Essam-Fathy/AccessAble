@@ -95,7 +95,7 @@ class _SpecifyUserPageState extends State<SpecifyUserPage> {
                         const Text(
                           'Business',
                           style: TextStyle(
-                            color: Colors.white30,
+                            color: Colors.blue,
                             decoration: TextDecoration.underline,
                           ),
                         ),
