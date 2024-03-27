@@ -52,18 +52,19 @@ class BusinessSignUpPage extends StatelessWidget {
                         width: MediaQuery.of(context).size.width * 0.25,
                         fit: BoxFit.cover,
                       ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/companySignUp');
-                        },
-                        child: const Text('Company'),
+                      Text(
+                        'Company',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          decoration: TextDecoration.underline,
+                        ),
                       ),
                     ],
                   ),
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, '/companySignUp');
+                    Navigator.pushNamed(context, '/individualSignUp');
                   },
                   child: Column(
                     children: <Widget>[
@@ -72,11 +73,12 @@ class BusinessSignUpPage extends StatelessWidget {
                         width: MediaQuery.of(context).size.width * 0.25,
                         fit: BoxFit.cover,
                       ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/individualSignUp');
-                        },
-                        child: const Text('Individual'),
+                      Text(
+                        'Individual',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          decoration: TextDecoration.underline,
+                        ),
                       ),
                     ],
                   ),
