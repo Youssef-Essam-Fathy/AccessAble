@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:accessable/shared/resources/image_assets.dart';
+import 'package:accessable/shared/resources/assets_manager.dart';
 import 'package:accessable/shared/resources/views_manager.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +34,7 @@ class _SplashPageState extends State<SplashPage> {
     return Scaffold(
         // backgroundColor: ColorManager.primary,
         body: Center(
-      child: Image.asset(AssetsManager.splashLogo,fit: BoxFit.cover),
+      child: Image.asset(ImageAssets.splashLogo,fit: BoxFit.cover),
     ));
   }
 
