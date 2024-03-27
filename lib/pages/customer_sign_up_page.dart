@@ -21,6 +21,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
   final phoneController = TextEditingController();
   final aboutController = TextEditingController();
   String? gender;
+  String? disability;
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +138,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
               Padding(
                 padding: const EdgeInsets.only(right: 15, left: 15),
                 child: DropdownButtonFormField<String>(
-                  value: gender,
+                  value: disability,
                   decoration: InputDecoration(
                     labelText: 'Disability',
                     border: OutlineInputBorder(
@@ -162,12 +163,12 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   }).toList(),
                   onChanged: (String? newValue) {
                     setState(() {
-                      gender = newValue;
+                      disability = newValue;
                     });
                   },
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please select your gender';
+                      return 'Please select your disability';
                     }
                     return null;
                   },

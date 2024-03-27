@@ -20,6 +20,7 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
   final phoneController = TextEditingController();
   final aboutController = TextEditingController();
   String? gender;
+  String? serviceType;
 
   @override
   Widget build(BuildContext context) {
