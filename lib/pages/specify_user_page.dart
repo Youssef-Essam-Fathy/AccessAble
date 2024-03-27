@@ -49,7 +49,7 @@ class SpecifyUserPage extends StatelessWidget {
                     children: <Widget>[
                       Image.asset(
                         'assets/images/custmer_icon.png',
-                        width: MediaQuery.of(context).size.width * 0.20,
+                        width: MediaQuery.of(context).size.width * 0.25,
                         fit: BoxFit.cover,
                       ),
                       Text(
