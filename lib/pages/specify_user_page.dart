@@ -39,44 +39,56 @@ class SpecifyUserPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, '/customerSignUp');
-                },
-                child: Column(
-                  children: <Widget>[
-                    Image.asset(
-                      'assets/images/young-businessman-icon.png',
-                      width: MediaQuery.of(context).size.width * 0.20,
-                      fit: BoxFit.cover,
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/customerSignUp');
-                      },
-                      child: const Text('Customer'),
-                    ),
-                  ],
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/customerSignUp');
+                  },
+                  child: Column(
+                    children: <Widget>[
+                      Image.asset(
+                        'assets/images/young-businessman-icon.png',
+                        width: MediaQuery.of(context).size.width * 0.20,
+                        fit: BoxFit.cover,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/customerSignUp');
+                        },
+                        child: const Text('Customer'),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, '/businessSignUp');
-                },
-                child: Column(
-                  children: <Widget>[
-                    Image.asset(
-                      'assets/images/about-us-icon.png',
-                      width: MediaQuery.of(context).size.width * 0.35,
-                      fit: BoxFit.cover,
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/businessSignUp');
-                      },
-                      child: const Text('Business'),
-                    ),
-                  ],
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/businessSignUp');
+                  },
+                  child: Column(
+                    children: <Widget>[
+                      Image.asset(
+                        'assets/images/about-us-icon.png',
+                        width: MediaQuery.of(context).size.width * 0.35,
+                        fit: BoxFit.cover,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/businessSignUp');
+                        },
+                        child: const Text('Business'),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
