@@ -1,5 +1,3 @@
-
-import 'package:accessable/pages/bottom_nav_bar_pages/profile.dart';
 import 'package:accessable/pages/forget_password_page.dart';
 import 'package:accessable/pages/home_page.dart';
 import 'package:accessable/pages/notifications_page.dart';
@@ -22,7 +20,7 @@ class Routes {
   static const String registerRoute = "/register";
   static const String forgotPasswordRoute = "/forgetPassword";
   static const String mainRoute = "/main";
-  static  const String notificationsRoute = "/notifications";
+  static const String notificationsRoute = "/notifications";
   static const String profileRoute = "/profile";
 }
 
