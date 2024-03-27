@@ -1,4 +1,4 @@
-class AssetsManager {
+class ImageAssets {
   static const _images = "assets/images";
   static const String signInLogo =
   "$_images/accessable_logo.png";
