@@ -60,6 +60,7 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
                   },
                 ),
               ),
+              const SizedBox(height: 25),
               TextFormField(
                 controller: lastNameController,
                 decoration: InputDecoration(
