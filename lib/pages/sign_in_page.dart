@@ -1,7 +1,7 @@
 import 'package:accessable/presentation/color_manager.dart';
 import 'package:accessable/shared/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
-import '../shared/resources/image_assets.dart';
+import '../shared/resources/assets_manager.dart';
 import 'forget_password_page.dart';
 
 class SignInPage extends StatefulWidget {
@@ -16,6 +16,7 @@ class _SignInPageState extends State<SignInPage> {
   late String? _email, _password;
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
+  bool _isPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class _SignInPageState extends State<SignInPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                AssetsManager.signInLogo,
+                ImageAssets.signInLogo,
                 fit: BoxFit.cover,
               ),
               Padding(
@@ -81,16 +82,24 @@ class _SignInPageState extends State<SignInPage> {
                   },
                   // onChanged: (String value) {
                   //   print(value);
-                  // },
-                  decoration: const InputDecoration(
+                  // }
+                  obscureText: !_isPasswordVisible,
+                  decoration:  InputDecoration(
                     labelText: 'Password ',
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.lock_sharp,
                       color: Colors.black,
                     ),
-                    suffixIcon: Icon(
-                      Icons.remove_red_eye_sharp,
-                      color: Colors.black,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _isPasswordVisible ? Icons.visibility : Icons.visibility_off, // Change the icon based on the password visibility
+                        color: Colors.black,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _isPasswordVisible = !_isPasswordVisible; // Toggle the password visibility
+                        });
+                      },
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(25.0)),
