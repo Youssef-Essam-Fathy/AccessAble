@@ -1,3 +1,4 @@
+import 'package:accessable/presentation/color_manager.dart';
 import 'package:flutter/material.dart';
 
 class CustomerSignUpPage extends StatefulWidget {
@@ -22,7 +23,6 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
   String? gender;
   String? disability;
 
-
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -39,160 +39,252 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
         body: Form(
           key: _formKey,
           child: ListView(
-              children: <Widget>[
-          Image.asset('assets/images/accessable_logo.png'),
-          // Add your TextFormFields here
-          TextFormField(
-            controller: firstNameController,
-            decoration: const InputDecoration(
-              labelText: 'First Name',
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your first name';
-              }
-              return null;
-            },
-          ),
-          TextFormField(
-            controller: lastNameController,
-            decoration: const InputDecoration(
-              labelText: 'Last Name',
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your last name';
-              }
-              return null;
-            },
-          ),
-          DropdownButtonFormField<String>(
-            value: gender,
-            decoration: const InputDecoration(
-              labelText: 'Gender',
-            ),
-            items: <String>['Male', 'Female'].map((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
-            onChanged: (String? newValue) {
-              setState(() {
-                gender = newValue;
-              });
-            },validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please select your gender';
-            }
-            return null;
-          },
-          ),
-            TextFormField(
-              controller: ageController,
-              decoration: const InputDecoration(
-                labelText: 'Age',
+            children: <Widget>[
+              Image.asset('assets/images/accessable_logo_1.png'),
+              const SizedBox(height: 35),
+              // Add your TextFormFields here
+              Padding(
+                padding: const EdgeInsets.only(left: 15, right: 15),
+                child: TextFormField(
+                  controller: firstNameController,
+                  decoration: InputDecoration(
+                    labelText: 'First Name',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide(color: ColorManager.primary),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your first name';
+                    }
+                    return null;
+                  },
+                ),
               ),
-              keyboardType: TextInputType.number,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your age';
-                }
-                return null;
-              },
-            ),
-            DropdownButtonFormField<String>(
-              value: gender,
-              decoration: const InputDecoration(
-                labelText: 'Disability',
+              const SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.only(right: 15, left: 15),
+                child: TextFormField(
+                  controller: lastNameController,
+                  decoration: InputDecoration(
+                    labelText: 'Last Name',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide(color: ColorManager.primary),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your last name';
+                    }
+                    return null;
+                  },
+                ),
               ),
-              items: <String>[
-                'Spinal Cord Injury',
-                'Paraplegia',
-                'Quadriplegia',
-                'Multiple Sclerosis',
-                'Spina Bifida',
-                'Muscular Dystrophy',
-                'Cerebral Palsy',
-                'Hemiplegia'
-              ].map((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              onChanged: (String? newValue) {
-                setState(() {
-                  gender = newValue;
-                });
-              },
-
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please select your gender';
-                }
-                return null;
-              },
-            ),
-            TextFormField(
-              controller: countryController,
-              decoration: const InputDecoration(
-                labelText: 'Country',
+              const SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.only(right: 15, left: 15),
+                child: DropdownButtonFormField<String>(
+                  value: gender,
+                  decoration: InputDecoration(
+                    labelText: 'Gender',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide(color: ColorManager.primary),
+                    ),
+                  ),
+                  items: <String>['Male', 'Female'].map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      gender = newValue;
+                    });
+                  },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please select your gender';
+                    }
+                    return null;
+                  },
+                ),
               ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your country';
-                }
-                return null;
-              },
-            ),
-            TextFormField(
-              controller: emailController,
-              decoration: const InputDecoration(
-                labelText: 'Email',
+              const SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.only(right: 15, left: 15),
+                child: TextFormField(
+                  controller: ageController,
+                  decoration: InputDecoration(
+                    labelText: 'Age',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide(color: ColorManager.primary),
+                    ),
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your age';
+                    }
+                    return null;
+                  },
+                ),
               ),
-              keyboardType: TextInputType.emailAddress,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your email';
-                }
-                return null;
-              },
-            ),
-            TextFormField(
-              controller: phoneController,
-              decoration: const InputDecoration(
-                labelText: 'Phone',
+              const SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.only(right: 15, left: 15),
+                child: DropdownButtonFormField<String>(
+                  value: disability,
+                  decoration: InputDecoration(
+                    labelText: 'Disability',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide(color: ColorManager.primary),
+                    ),
+                  ),
+                  items: <String>[
+                    'Spinal Cord Injury',
+                    'Paraplegia',
+                    'Quadriplegia',
+                    'Multiple Sclerosis',
+                    'Spina Bifida',
+                    'Muscular Dystrophy',
+                    'Cerebral Palsy',
+                    'Hemiplegia'
+                  ].map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      disability = newValue;
+                    });
+                  },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please select your disability';
+                    }
+                    return null;
+                  },
+                ),
               ),
-              keyboardType: TextInputType.phone,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your phone number';
-                }
-                return null;
-              },
-            ),
-            TextFormField(
-              controller: aboutController,
-              decoration: const InputDecoration(
-                labelText: 'About',
+              const SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.only(right: 15, left: 15),
+                child: TextFormField(
+                  controller: countryController,
+                  decoration: InputDecoration(
+                    labelText: 'Country',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide(color: ColorManager.primary),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your country';
+                    }
+                    return null;
+                  },
+                ),
               ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter something about yourself';
-                }
-                return null;
-              },
-            ),
-            ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  // Handle sign up
-                  Navigator.pushNamed(context, '/signIn');
-                }
-              },
-              child: const Text('Sign Up'),
-            ),
+              const SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.only(right: 15, left: 15),
+                child: TextFormField(
+                  controller: emailController,
+                  decoration: InputDecoration(
+                    labelText: 'Email',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide(color: ColorManager.primary),
+                    ),
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your email';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              const SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.only(right: 15, left: 15),
+                child: TextFormField(
+                  controller: phoneController,
+                  decoration: InputDecoration(
+                    labelText: 'Phone',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide(color: ColorManager.primary),
+                    ),
+                  ),
+                  keyboardType: TextInputType.phone,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your phone number';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              const SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.only(right: 15, left: 15),
+                child: TextFormField(
+                  controller: aboutController,
+                  decoration: InputDecoration(
+                    labelText: 'About',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide(color: ColorManager.primary),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter something about yourself';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              const SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.only(right: 15, left: 15, bottom: 25),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        // Handle sign up
+                        Navigator.pushNamed(context, '/signIn');
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ColorManager.maximumBlueGreen,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                    ),
+                    child: Text(
+                      'Sign Up',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: ColorManager.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
