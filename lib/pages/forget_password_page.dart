@@ -12,20 +12,23 @@ class ForgetPasswordPage extends StatefulWidget {
 class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(
-      //   leading: IconButton(
-      //     onPressed:setState(() {
-      //       return;
-      //     });,
-      //     icon: const Icon(
-      //     Icons.arrow_back_ios_new_sharp,
-      //
-      //     ),),
-      // ),
-      body: Center(
-        child: Column(
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(30.0),
+      child: Scaffold(
+        // appBar: AppBar(
+        //   leading: IconButton(
+        //     onPressed:setState(() {
+        //       return;
+        //     });,
+        //     icon: const Icon(
+        //     Icons.arrow_back_ios_new_sharp,
+        //
+        //     ),),
+        // ),
+        body: Center(
+          child: Column(
 
+          ),
         ),
       ),
     );

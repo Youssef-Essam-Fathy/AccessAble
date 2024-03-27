@@ -10,8 +10,10 @@ class NotificationsPage extends StatefulWidget {
 class _NotificationsPageState extends State<NotificationsPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(30.0),
+      child: Scaffold(
+        appBar: AppBar(
           title: const Text("Profile"),
           leading: IconButton(
             onPressed: () {
@@ -19,9 +21,10 @@ class _NotificationsPageState extends State<NotificationsPage> {
             },
             icon: const Icon(Icons.arrow_back_ios_new_sharp),
           )
-      ),
-      body: const Center(
-        child: Text("Notifications"),
+        ),
+        body: const Center(
+          child: Text("Notifications"),
+        ),
       ),
     );
   }
