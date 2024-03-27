@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "961372132821",
+    "project_id": "accessable-e9ed2",
+    "storage_bucket": "accessable-e9ed2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961372132821:android:4a5baf25d6321c0b87195c",
+        "android_client_info": {
+          "package_name": "com.example.accessable"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBik7wvZXe-8tNlwYL2givDt3mmOD799CA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
