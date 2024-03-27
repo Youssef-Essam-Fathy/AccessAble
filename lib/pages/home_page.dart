@@ -1,7 +1,7 @@
 import 'package:accessable/presentation/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-import 'drawer_screen.dart'; // Import the DrawerScreen
+import 'drawer_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
           actions: [
             IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/NotificationsPage');
+                Navigator.pushNamed(context, '/notifications');
               },
               icon: Icon(Icons.notifications, color: ColorManager.stormCloud,),
             ),
