@@ -13,18 +13,26 @@ class DrawerScreen extends StatefulWidget {
 class _DrawerScreenState extends State<DrawerScreen> {
   @override
   Widget build(BuildContext context) {
-    return ZoomDrawer(
-      style: DrawerStyle.style1,
+    return  ZoomDrawer(    style: DrawerStyle.style1,
       menuScreen: Container(
         color: ColorManager.maximumBlueGreen,
-        child: const Center(
-          child: Text("Menu Screen"),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text("Menu Screen"),
+            ListTile(
+              title: const Text('Sign Out', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold)),
+              onTap: () {
+                Navigator.pushNamed(context, '/login');
+              },
+            ),
+          ],
         ),
       ),
       mainScreen: Container(
         color: Colors.white,
         child: const Center(
-          child: Text("AccessAble"),
+          child: Text("SignOut"),
         ),
       ),
       borderRadius: 24.0,
