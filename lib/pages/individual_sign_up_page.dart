@@ -48,6 +48,7 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
                   controller: firstNameController,
                   decoration: InputDecoration(
                     labelText: 'First Name',
+                    prefixIcon: Icon(Icons.person),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
