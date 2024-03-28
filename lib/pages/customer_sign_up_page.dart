@@ -1,5 +1,6 @@
 import 'package:accessable/presentation/color_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class CustomerSignUpPage extends StatefulWidget {
   const CustomerSignUpPage({super.key});
@@ -263,10 +264,25 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        // Handle sign up
-                        Navigator.pushNamed(context, '/signIn');
+                        try {
+                          UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                            email: emailController.text,
+                            password: 'your-password', // Replace with your password field
+                          );
+                          // If the previous line doesn't throw an error, the user is created
+                          // Now, send the email verification
+                          await userCredential.user!.sendEmailVerification();
+                          // After this line, the verification email is sent to the user
+                          Navigator.pushNamed(context, '/signIn');
+                        } on FirebaseAuthException catch (e) {
+                          if (e.code == 'email-already-in-use') {
+                            print('The account already exists for that email.');
+                          }
+                        } catch (e) {
+                          print(e);
+                        }
                       }
                     },
                     style: ElevatedButton.styleFrom(
