@@ -14,7 +14,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
       borderRadius: BorderRadius.circular(30.0),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Profile"),
+          title: const Text("Notifications"),
           leading: IconButton(
             onPressed: () {
               Navigator.pop(context);

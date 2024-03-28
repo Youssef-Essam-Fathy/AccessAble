@@ -1,40 +1,48 @@
 import 'package:accessable/presentation/color_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
-class DrawerScreen extends StatefulWidget {
-  const DrawerScreen({super.key});
+class DrawerScreen extends StatelessWidget {
+  const DrawerScreen({Key? key}) : super(key: key);
 
-  @override
-  State<DrawerScreen> createState() => _DrawerScreenState();
-}
-
-class _DrawerScreenState extends State<DrawerScreen> {
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(30.0),
-      child: ZoomDrawer(
-        style: DrawerStyle.style1,
-        menuScreen: Container(
-          color: ColorManager.maximumBlueGreen,
-          child: const Center(
-            child: Text("Menu Screen"),
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: ColorManager.maximumBlueGreen,
+            ),
+            child: const Text('Menu Screen', style: TextStyle(fontSize: 25),),
           ),
-        ),
-        mainScreen: Container(
-          color: Colors.white,
-          child: const Center(
-            child: Text("AccessAble"),
+          ListTile(
+            leading: IconButton(icon: const Icon(Icons.settings),
+                onPressed: () => Navigator.pushNamed(context, '/settings'),),
+            title: const Text('Settings', style: TextStyle(fontSize: 25),),
+            onTap: () {
+              // Update the state of the app
+              // Then close the drawer
+              Navigator.pushNamed(context, '/settings');
+            },
           ),
-        ),
-        borderRadius: 24.0,
-        showShadow: true,
-        angle: -12.0,
-        mainScreenScale: 0.2,
-        slideWidth: MediaQuery.of(context).size.width * .65,
-        openCurve: Curves.fastOutSlowIn,
-        closeCurve: Curves.bounceIn,
+          ListTile(
+            leading: IconButton(icon: const Icon(Icons.home),
+                onPressed: () => Navigator.pushNamed(context, '/main'),),
+            title: const Text('Home', style: TextStyle(fontSize: 25),),
+            onTap: () {
+              Navigator.pushNamed(context, '/main');
+            },
+          ),
+          ListTile(
+            leading: IconButton(icon: const Icon(Icons.logout),
+                onPressed: () => Navigator.pushNamed(context, '/login')),
+            title: const Text('Logout', style: TextStyle(fontSize: 25),),
+            onTap: () {
+              Navigator.pushNamed(context, '/login');
+            },
+          ),
+        ],
       ),
     );
   }
