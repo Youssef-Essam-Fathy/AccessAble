@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../presentation/color_manager.dart';
 
 class ForgetPasswordPage extends StatefulWidget {
   const ForgetPasswordPage({Key? key}) : super(key: key);
@@ -14,7 +13,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(30.0),
-      child: Scaffold(
+      child: const Scaffold(
         // appBar: AppBar(
         //   leading: IconButton(
         //     onPressed:setState(() {

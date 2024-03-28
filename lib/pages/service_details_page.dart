@@ -28,7 +28,7 @@ class ServiceDetailsPage extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: Text(
               description,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
           ),
           ElevatedButton(

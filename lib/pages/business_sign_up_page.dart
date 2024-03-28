@@ -52,7 +52,7 @@ class BusinessSignUpPage extends StatelessWidget {
                         width: MediaQuery.of(context).size.width * 0.25,
                         fit: BoxFit.cover,
                       ),
-                      Text(
+                      const Text(
                         'Company',
                         style: TextStyle(
                           color: Colors.blue,
@@ -73,7 +73,7 @@ class BusinessSignUpPage extends StatelessWidget {
                         width: MediaQuery.of(context).size.width * 0.25,
                         fit: BoxFit.cover,
                       ),
-                      Text(
+                      const Text(
                         'Individual',
                         style: TextStyle(
                           color: Colors.blue,

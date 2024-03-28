@@ -81,7 +81,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   controller: firstNameController,
                   decoration: InputDecoration(
                     labelText: 'First Name',
-                    prefixIcon: Icon(Icons.person),
+                    prefixIcon: const Icon(Icons.person),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -102,7 +102,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   controller: lastNameController,
                   decoration: InputDecoration(
                     labelText: 'Last Name',
-                    prefixIcon: Icon(Icons.person),
+                    prefixIcon: const Icon(Icons.person),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -123,7 +123,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   value: gender,
                   decoration: InputDecoration(
                     labelText: 'Gender',
-                    prefixIcon: Icon(Icons.person),
+                    prefixIcon: const Icon(Icons.person),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -155,7 +155,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   controller: ageController,
                   decoration: InputDecoration(
                     labelText: 'Age',
-                    prefixIcon: Icon(Icons.calendar_today),
+                    prefixIcon: const Icon(Icons.calendar_today),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -177,7 +177,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   value: disability,
                   decoration: InputDecoration(
                     labelText: 'Disability',
-                    prefixIcon: Icon(Icons.accessible),
+                    prefixIcon: const Icon(Icons.accessible),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -218,7 +218,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   value: country,
                   decoration: InputDecoration(
                     labelText: 'Country',
-                    prefixIcon: Icon(Icons.location_on),
+                    prefixIcon: const Icon(Icons.location_on),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -251,7 +251,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   controller: phoneController,
                   decoration: InputDecoration(
                     labelText: 'Phone',
-                    prefixIcon: Icon(Icons.phone),
+                    prefixIcon: const Icon(Icons.phone),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -273,7 +273,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   controller: emailController,
                   decoration: InputDecoration(
                     labelText: 'Email',
-                    prefixIcon: Icon(Icons.email),
+                    prefixIcon: const Icon(Icons.email),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -295,7 +295,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   controller: passwordController,
                   decoration: InputDecoration(
                     labelText: 'Password',
-                    prefixIcon: Icon(Icons.lock),
+                    prefixIcon: const Icon(Icons.lock),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -317,7 +317,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   controller: confirmPasswordController,
                   decoration: InputDecoration(
                     labelText: 'Confirm Password',
-                    prefixIcon: Icon(Icons.lock),
+                    prefixIcon: const Icon(Icons.lock),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -342,7 +342,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   controller: aboutController,
                   decoration: InputDecoration(
                     labelText: 'About',
-                    prefixIcon: Icon(Icons.info),
+                    prefixIcon: const Icon(Icons.info),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
