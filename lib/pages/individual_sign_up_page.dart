@@ -1,3 +1,4 @@
+import 'package:accessable/presentation/color_manager.dart';
 import 'package:flutter/material.dart';
 
 class IndividualSignUp extends StatefulWidget {
@@ -19,6 +20,7 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
   final phoneController = TextEditingController();
   final aboutController = TextEditingController();
   String? gender;
+  String? serviceType;
 
   @override
   Widget build(BuildContext context) {
@@ -37,31 +39,47 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
           key: _formKey,
           child: ListView(
             children: <Widget>[
-              Image.asset('assets/images/accessable_logo.png'),
+              Image.asset('assets/images/accessable_logo_1.png'),
+              const SizedBox(height: 35),
               // Add your TextFormFields here
-              TextFormField(
-                controller: firstNameController,
-                decoration: InputDecoration(
-                  labelText: 'First Name',
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: TextFormField(
+                  controller: firstNameController,
+                  decoration: InputDecoration(
+                    labelText: 'First Name',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide(color: ColorManager.primary),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your first name';
+                    }
+                    return null;
+                  },
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your first name';
-                  }
-                  return null;
-                },
               ),
-              TextFormField(
-                controller: lastNameController,
-                decoration: InputDecoration(
-                  labelText: 'Last Name',
+              const SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: TextFormField(
+                  controller: lastNameController,
+                  decoration: InputDecoration(
+                    labelText: 'Last Name',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide(color: ColorManager.primary),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your last name';
+                    }
+                    return null;
+                  },
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your last name';
-                  }
-                  return null;
-                },
               ),
               TextFormField(
                 controller: ageController,

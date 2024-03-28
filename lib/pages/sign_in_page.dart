@@ -98,7 +98,7 @@ class _SignInPageState extends State<SignInPage> {
                               });
                             },
                           ),
-                          border: OutlineInputBorder(
+                          border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(30.0)),
                           ),
                         ),
@@ -136,7 +136,7 @@ class _SignInPageState extends State<SignInPage> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: ColorManager.maximumBlueGreen,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(25),
                             ),
                           ),
                           child: Text(
