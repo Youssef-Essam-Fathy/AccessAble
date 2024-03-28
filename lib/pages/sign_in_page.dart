@@ -31,10 +31,13 @@ class _SignInPageState extends State<SignInPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      ImageAssets.signInLogo,
-                      fit: BoxFit.cover,
+                    Center(
+                      child: Image.asset(
+                        ImageAssets.signInLogo,
+                        fit: BoxFit.cover,
+                      ),
                     ),
+                    const SizedBox(height: 60.0),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 40.0),
                       child: TextFormField(
@@ -148,6 +151,9 @@ class _SignInPageState extends State<SignInPage> {
                           ),
                         ),
                       ),
+                    ),
+                    const SizedBox(
+                      height: 10.0,
                     ),
                     Center(
                       child: Row(
