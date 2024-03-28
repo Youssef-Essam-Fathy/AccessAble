@@ -4,10 +4,10 @@ import 'package:accessable/shared/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:accessable/shared/resources/assets_manager.dart';
 import 'forget_password_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
-
   @override
   State<SignInPage> createState() => _SignInPageState();
 }
@@ -20,6 +20,17 @@ class _SignInPageState extends State<SignInPage> {
   bool _isPasswordVisible = false;
 
   @override
+  void initState() {
+    super.initState();
+
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user == null) {
+        print('User is currently signed out!');
+      } else {
+        print('User is signed in!');
+      }
+    });
+  }
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(30.0),
@@ -131,9 +142,24 @@ class _SignInPageState extends State<SignInPage> {
                         width: double.infinity, // Add this line
                         height: 50,
                         child: ElevatedButton(
-                          onPressed: () {
+                          onPressed: () async {
                             if (_formkey.currentState!.validate()) {
-                              Navigator.of(context).pushNamed(Routes.mainRout);
+                              try {
+                                UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+                                  email: _email!,
+                                  password: _password!,
+                                );
+                                // If the previous line doesn't throw an error, the user is signed in
+                                Navigator.of(context).pushNamed(Routes.mainRout);
+                              } on FirebaseAuthException catch (e) {
+                                if (e.code == 'user-not-found') {
+                                  print('No user found for that email.');
+                                } else if (e.code == 'wrong-password') {
+                                  print('Wrong password provided for that user.');
+                                }
+                              } catch (e) {
+                                print(e);
+                              }
                             }
                           },
                           style: ElevatedButton.styleFrom(

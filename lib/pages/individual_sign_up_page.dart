@@ -48,6 +48,7 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
                   controller: firstNameController,
                   decoration: InputDecoration(
                     labelText: 'First Name',
+                    prefixIcon: Icon(Icons.person),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -137,7 +138,7 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: DropdownButtonFormField<String>(
-                  value: gender,
+                  value: serviceType,
                   decoration: InputDecoration(
                     labelText: 'Service Type',
                     border: OutlineInputBorder(
@@ -145,7 +146,7 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
                       borderSide: BorderSide(color: ColorManager.primary),
                     ),
                   ),
-                  items: <String>['Transportation', 'Jop Provider'].map((String value) {
+                  items: <String>['Transportation', 'Job Provider'].map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
@@ -153,10 +154,9 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
                   }).toList(),
                   onChanged: (String? newValue) {
                     setState(() {
-                      gender = newValue;
+                      serviceType = newValue;
                     });
                   },
-
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please select your service type';
