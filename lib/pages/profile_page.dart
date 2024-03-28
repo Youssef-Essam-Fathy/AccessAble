@@ -10,18 +10,21 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: AppBar(
-        title: const Text("Profile"),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back_ios_new_sharp),
-        )
-      ),
-      body: const Center(
-        child: Text("ProfilePage"),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(30.0),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Profile"),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back_ios_new_sharp),
+          )
+        ),
+        body: const Center(
+          child: Text("ProfilePage"),
+        ),
       ),
     );
   }

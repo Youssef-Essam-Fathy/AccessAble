@@ -24,7 +24,7 @@ class ViewsManager {
 
   // home
   static void openHomeView(context) {
-    _openViewNoBack(context, Routes.mainRoute);
+    _openViewNoBack(context, Routes.mainRout);
   }
   // notifications
   static void openNotificationsView(context) {
@@ -32,7 +32,7 @@ class ViewsManager {
   }
   // login
   static void openLoginMain(context) {
-    _openViewNoBack(context, Routes.loginRoute);
+    _openViewNoBack(context, Routes.loginRout);
   }
 
   // ------------ with back ------------
@@ -40,12 +40,12 @@ class ViewsManager {
 
   // register
   static void openRegisterWB(context) {
-    _openViewWithBack(context, Routes.registerRoute);
+    _openViewWithBack(context, Routes.registerRout);
   }
 
   // forget password
   static void openForgetPassWB(context) {
-    _openViewWithBack(context, Routes.forgotPasswordRoute);
+    _openViewWithBack(context, Routes.forgotPasswordRout);
   }
 
   // go back if you can
