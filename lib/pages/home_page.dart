@@ -130,20 +130,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Text(
-                'Detailed description about the service...',
-                style: TextStyle(fontSize: 16),
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/h_transportation');
-              },
-              child: Text('Go to Handicapped Transportation'),
-            ),
-            // other widgets go here...
+            const SizedBox(height: 20),
           ],
         ),
         drawer: const DrawerScreen(), // Add this line

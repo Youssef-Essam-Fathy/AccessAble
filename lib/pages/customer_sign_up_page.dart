@@ -1,5 +1,6 @@
 import 'package:accessable/presentation/color_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class CustomerSignUpPage extends StatefulWidget {
   const CustomerSignUpPage({super.key});
@@ -18,8 +19,11 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
   final disabilityController = TextEditingController();
   final countryController = TextEditingController();
   final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
   final phoneController = TextEditingController();
   final aboutController = TextEditingController();
+
   String? gender;
   String? disability;
 
@@ -219,6 +223,51 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
               Padding(
                 padding: const EdgeInsets.only(right: 15, left: 15),
                 child: TextFormField(
+                  controller: passwordController,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide(color: ColorManager.primary),
+                    ),
+                  ),
+                  obscureText: true,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your password';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              const SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.only(right: 15, left: 15),
+                child: TextFormField(
+                  controller: confirmPasswordController,
+                  decoration: InputDecoration(
+                    labelText: 'Confirm Password',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide(color: ColorManager.primary),
+                    ),
+                  ),
+                  obscureText: true,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please confirm your password';
+                    }
+                    if (value != passwordController.text) {
+                      return 'Passwords do not match';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              const SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.only(right: 15, left: 15),
+                child: TextFormField(
                   controller: phoneController,
                   decoration: InputDecoration(
                     labelText: 'Phone',
@@ -248,12 +297,6 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                       borderSide: BorderSide(color: ColorManager.primary),
                     ),
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter something about yourself';
-                    }
-                    return null;
-                  },
                 ),
               ),
               const SizedBox(height: 25),
@@ -263,10 +306,25 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        // Handle sign up
-                        Navigator.pushNamed(context, '/signIn');
+                        try {
+                          UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                            email: emailController.text,
+                            password: 'your-password', // Replace with your password field
+                          );
+                          // If the previous line doesn't throw an error, the user is created
+                          // Now, send the email verification
+                          await userCredential.user!.sendEmailVerification();
+                          // After this line, the verification email is sent to the user
+                          Navigator.pushNamed(context, '/signIn');
+                        } on FirebaseAuthException catch (e) {
+                          if (e.code == 'email-already-in-use') {
+                            print('The account already exists for that email.');
+                          }
+                        } catch (e) {
+                          print(e);
+                        }
                       }
                     },
                     style: ElevatedButton.styleFrom(
