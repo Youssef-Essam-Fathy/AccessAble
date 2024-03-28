@@ -78,7 +78,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
               Padding(
                 padding: const EdgeInsets.only(right: 15, left: 15),
                 child: TextFormField(
-                  controller: lastNameController,
+                  controller: firstNameController,
                   decoration: InputDecoration(
                     labelText: 'First Name',
                     prefixIcon: Icon(Icons.person),
