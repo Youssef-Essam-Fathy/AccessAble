@@ -1,12 +1,17 @@
-import 'package:accessable/pages/service_details_page.dart';
+import 'package:accessable/pages/handicapped_transportation_page.dart';
 import 'package:flutter/material.dart';
 import 'package:accessable/presentation/color_manager.dart';
 import 'drawer_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -56,82 +61,29 @@ class HomePage extends StatelessWidget {
           ),
           backgroundColor: ColorManager.primary,
         ),
-        body: Column(
-          children: [
-            Card(
-              margin: const EdgeInsets.all(10),
-              child: SizedBox(
-                height: 400, // adjust the height as needed
-                child: PageView(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ServiceDetailsPage(
-                              imagePath: 'assets/images/h_transportation_2.svg',
-                              title: 'Handicapped Transportation',
-                              description:
-                                  'Detailed description about the service...',
-                            ),
-                          ),
-                        );
-                      },
-                      child: SvgPicture.asset(
-                        'assets/images/h_transportation_2.svg',
-                        fit: BoxFit
-                            .cover, // This will make the SVG cover the entire card
-                      ),
-                    ),
-                    const SizedBox(height: 35),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ServiceDetailsPage(
-                              imagePath: 'assets/images/h_transportation_2.jpg',
-                              title: 'Handicapped Transportation',
-                              description:
-                                  'Detailed description about the service...',
-                            ),
-                          ),
-                        );
-                      },
-                      child: Image.asset(
-                        'assets/images/h_transportation_2.jpg',
-                        fit: BoxFit
-                            .cover, // This will make the image cover the entire card
-                      ),
-                    ),
-                    const SizedBox(height: 35),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ServiceDetailsPage(
-                              imagePath: 'assets/images/h_transportation_2.jpg',
-                              title: 'Handicapped Transportation',
-                              description:
-                                  'Detailed description about the service...',
-                            ),
-                          ),
-                        );
-                      },
-                      child: Image.asset(
-                        'assets/images/h_transportation_2.jpg',
-                        fit: BoxFit
-                            .cover, // This will make the image cover the entire card
-                      ),
-                    ),
-                  ],
-                ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SvgPicture.asset(
+                'assets/images/accessable_logo_1.svg',
+                width: 200,
+                height: 200,
               ),
-            ),
-            const SizedBox(height: 20),
-          ],
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HandicappedTransportationPage(),
+                    ),
+                  );
+                },
+                child: const Text('Get Started'),
+              ),
+            ],
+          ),
         ),
         drawer: const DrawerScreen(), // Add this line
       ),

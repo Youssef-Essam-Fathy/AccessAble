@@ -1,5 +1,6 @@
 import 'package:accessable/presentation/color_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class IndividualSignUp extends StatefulWidget {
   const IndividualSignUp({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class IndividualSignUp extends StatefulWidget {
 
 class _IndividualSignUpState extends State<IndividualSignUp> {
   final _formKey = GlobalKey<FormState>();
-  // Define your text controllers and variables here
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final ageController = TextEditingController();
@@ -19,8 +20,11 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
   final aboutController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
   String? gender;
   String? serviceType;
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +36,8 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(Icons.arrow_back_ios),
+            icon: Icon(Icons.arrow_back_ios_sharp,
+                color: ColorManager.stormCloud),
           ),
         ),
         body: Form(
@@ -168,8 +173,8 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
               const SizedBox(height: 25),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: TextFormField(
-                  controller: countryController,
+                child: DropdownButtonFormField<String>(
+                  value: countryController.text,
                   decoration: InputDecoration(
                     labelText: 'Country',
                     border: OutlineInputBorder(
@@ -177,9 +182,25 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
                       borderSide: BorderSide(color: ColorManager.primary),
                     ),
                   ),
+                  items: <String>[
+                    'Egypt (+20)',
+                    'Saudi Arabia (+966)',
+                    'United Arab Emirates (+971)',
+                    // Add other Arab countries here
+                  ].map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      countryController.text = newValue!;
+                    });
+                  },
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your country';
+                      return 'Please select your country';
                     }
                     return null;
                   },
@@ -222,6 +243,73 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter your phone number';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              const SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: TextFormField(
+                  controller: passwordController,
+                  obscureText: _obscureText,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    prefixIcon: Icon(Icons.lock),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscureText ? Icons.visibility : Icons.visibility_off,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide(color: ColorManager.primary),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your password';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              const SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: TextFormField(
+                  controller: confirmPasswordController,
+                  obscureText: _obscureText,
+                  decoration: InputDecoration(
+                    labelText: 'Confirm Password',
+                    prefixIcon: Icon(Icons.lock),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscureText ? Icons.visibility : Icons.visibility_off,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide(color: ColorManager.primary),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please confirm your password';
+                    }
+                    if (value != passwordController.text) {
+                      return 'Passwords do not match';
                     }
                     return null;
                   },

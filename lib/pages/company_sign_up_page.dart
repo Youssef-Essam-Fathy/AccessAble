@@ -33,7 +33,8 @@ class _CompanySignUpState extends State<CompanySignUp> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(Icons.arrow_back_ios),
+            icon: Icon(Icons.arrow_back_ios_sharp,
+                color: ColorManager.stormCloud),
           ),
         ),
         body: Form(
