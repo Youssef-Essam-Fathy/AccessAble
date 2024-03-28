@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class HandicappedTransportationPage extends StatefulWidget {
+  const HandicappedTransportationPage({super.key});
+
   @override
   _HandicappedTransportationPageState createState() => _HandicappedTransportationPageState();
 }

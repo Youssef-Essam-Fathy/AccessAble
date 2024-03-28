@@ -8,16 +8,17 @@ class MyApp extends StatefulWidget {
 
   //Named constructor
   MyApp._internal();
-   int appState = 0;
-
   static final MyApp _instance = MyApp._internal(); // Singleton or single instance
 
   factory MyApp() => _instance;
+
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
+   int appState = 0;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
