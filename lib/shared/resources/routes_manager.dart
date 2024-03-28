@@ -1,12 +1,16 @@
 
+import 'package:accessable/pages/community_page.dart';
 import 'package:accessable/pages/company_sign_up_page.dart';
+import 'package:accessable/pages/contact_us.dart';
 import 'package:accessable/pages/customer_sign_up_page.dart';
 
 import 'package:accessable/pages/forget_password_page.dart';
 import 'package:accessable/pages/home_page.dart';
+import 'package:accessable/pages/jop_page.dart';
 import 'package:accessable/pages/notifications_page.dart';
 import 'package:accessable/pages/profile_page.dart';
 import 'package:accessable/pages/sign_in_page.dart';
+import 'package:accessable/pages/transportation_page.dart';
 import 'package:accessable/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +37,10 @@ class Routes {
   static  const String notificationsRoute = "/notifications";
   static const String profileRoute = "/profile";
   static const String companySignUp = "/companySignUp";
+  static const String jobRout = "/jobpage";
+  static const String contactUsRout = "/contactUs";
+  static const String transportationRout = "/TransportationPage";
+  static const String communityRout = "/communityPage";
 
 }
 
@@ -61,6 +69,14 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ProfilePage());
       case Routes.companySignUp:
         return MaterialPageRoute(builder: (_) => const CompanySignUp());
+      case Routes.jobRout:
+        return MaterialPageRoute(builder: (_) => const JobPage());
+      case Routes.transportationRout:
+        return MaterialPageRoute(builder: (_) => const TransportationPage());
+      case Routes.contactUsRout:
+        return MaterialPageRoute(builder: (_) => const ContactUsPage());
+      case Routes.communityRout:
+        return MaterialPageRoute(builder: (_) => const CommunityPage());
       default:
         return _unDefinedRout();
     }
