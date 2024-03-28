@@ -1,15 +1,16 @@
 import 'package:accessable/presentation/color_manager.dart';
 import 'package:flutter/material.dart';
 
-class IndividualSignUp extends StatefulWidget {
-  const IndividualSignUp({Key? key}) : super(key: key);
+class CompanySignUp extends StatefulWidget {
+  const CompanySignUp({Key? key}) : super(key: key);
 
   @override
-  _IndividualSignUpState createState() => _IndividualSignUpState();
+  _CompanySignUpState createState() => _CompanySignUpState();
 }
 
-class _IndividualSignUpState extends State<IndividualSignUp> {
+class _CompanySignUpState extends State<CompanySignUp> {
   final _formKey = GlobalKey<FormState>();
+
   // Define your text controllers and variables here
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
@@ -124,7 +125,6 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
                       gender = newValue;
                     });
                   },
-
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please select your gender';
