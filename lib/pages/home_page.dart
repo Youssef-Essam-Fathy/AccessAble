@@ -47,10 +47,24 @@ class HomePage extends StatelessWidget {
         ),
         backgroundColor: ColorManager.primary,
       ),
-      body: const Center(
-        child: Text("HomePage"),
-      ),
-      drawer: const DrawerScreen(), // Add this line
+      body: Column(
+        children: [
+          Card(
+            margin: EdgeInsets.all(10),
+            child: Container(
+              height: 200, // adjust the height as needed
+              child: PageView(
+                children: const [
+                  Center(child: Text('Service 1: Handicapped Transportation')),
+                  Center(child: Text('Service 2: Handicapped job opportunity')),
+                  Center(child: Text('Service 3: Handicapped communication')),
+                ],
+              ),
+            ),
+          ),
+          // other widgets go here...
+        ],
+      ),      drawer: const DrawerScreen(), // Add this line
     );
   }
 }

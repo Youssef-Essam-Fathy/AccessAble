@@ -1,4 +1,5 @@
 
+import 'package:accessable/pages/company_sign_up_page.dart';
 import 'package:accessable/pages/customer_sign_up_page.dart';
 
 import 'package:accessable/pages/forget_password_page.dart';
@@ -31,6 +32,7 @@ class Routes {
   static const String individualSignUp = "/individualSignUp";
   static  const String notificationsRoute = "/notifications";
   static const String profileRoute = "/profile";
+  static const String companySignUp = "/companySignUp";
 
 }
 
@@ -57,7 +59,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const NotificationsPage());
       case Routes.profileRoute:
         return MaterialPageRoute(builder: (_) => const ProfilePage());
-
+      case Routes.companySignUp:
+        return MaterialPageRoute(builder: (_) => const CompanySignUp());
       default:
         return _unDefinedRout();
     }
