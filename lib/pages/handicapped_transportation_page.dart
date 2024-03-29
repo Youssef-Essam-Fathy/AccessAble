@@ -7,13 +7,16 @@ class HandicappedTransportationPage extends StatefulWidget {
   const HandicappedTransportationPage({super.key});
 
   @override
-  _HandicappedTransportationPageState createState() => _HandicappedTransportationPageState();
+  _HandicappedTransportationPageState createState() =>
+      _HandicappedTransportationPageState();
 }
 
-class _HandicappedTransportationPageState extends State<HandicappedTransportationPage> {
+class _HandicappedTransportationPageState
+    extends State<HandicappedTransportationPage> {
   late GoogleMapController mapController;
   late LatLng _center = const LatLng(0, 0);
-  bool isMapControllerInitialized = false; // Declare the variable here
+  bool isMapControllerInitialized = false;
+  double price = 0.0;
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -50,7 +53,8 @@ class _HandicappedTransportationPageState extends State<HandicappedTransportatio
 
     Position position = await Geolocator.getCurrentPosition();
     _center = LatLng(position.latitude, position.longitude);
-    if (isMapControllerInitialized) { // Check if mapController is initialized before using it
+    if (isMapControllerInitialized) {
+      // Check if mapController is initialized before using it
       mapController.moveCamera(CameraUpdate.newLatLng(_center));
     }
   }
@@ -64,8 +68,8 @@ class _HandicappedTransportationPageState extends State<HandicappedTransportatio
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back_ios_sharp,
-              color: ColorManager.stormCloud),
+          icon:
+              Icon(Icons.arrow_back_ios_sharp, color: ColorManager.stormCloud),
         ),
       ),
       body: FutureBuilder(
@@ -88,7 +92,13 @@ class _HandicappedTransportationPageState extends State<HandicappedTransportatio
                     ),
                   ),
                 ),
-                // Add your price display widget here
+                Text(
+                  'Price: \$${price.toStringAsFixed(2)}',
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ],
             );
           }
