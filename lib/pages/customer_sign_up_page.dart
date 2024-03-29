@@ -104,7 +104,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   controller: lastNameController,
                   decoration: InputDecoration(
                     labelText: 'Last Name',
-                    prefixIcon: Icon(Icons.person),
+                    prefixIcon: const Icon(Icons.person),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -299,7 +299,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   controller: passwordController,
                   decoration: InputDecoration(
                     labelText: 'Password',
-                    prefixIcon: Icon(Icons.lock),
+                    prefixIcon: const Icon(Icons.lock),
                     suffixIcon: IconButton(
                       icon: Icon(
                         _isPasswordVisible ? Icons.visibility : Icons.visibility_off, // Change the icon based on the password visibility
@@ -332,7 +332,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   controller: confirmPasswordController,
                   decoration: InputDecoration(
                     labelText: 'Confirm Password',
-                    prefixIcon: Icon(Icons.lock),
+                    prefixIcon: const Icon(Icons.lock),
                     suffixIcon: IconButton(
                       icon: Icon(
                         _isPasswordVisible ? Icons.visibility : Icons.visibility_off, // Change the icon based on the password visibility

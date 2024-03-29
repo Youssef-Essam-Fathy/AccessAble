@@ -7,8 +7,8 @@ import '../shared/resources/routes_manager.dart';
 class MyApp extends StatefulWidget {
 
   //Named constructor
-  MyApp._internal();
-  static final MyApp _instance = MyApp._internal(); // Singleton or single instance
+  const MyApp._internal();
+  static const MyApp _instance = MyApp._internal(); // Singleton or single instance
 
   factory MyApp() => _instance;
 

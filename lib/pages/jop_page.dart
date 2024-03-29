@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class JobPage extends StatelessWidget {
-  const JobPage({Key? key}) : super(key: key);
+  const JobPage({super.key});
 
   Future<String> getUserCollection() async {
     final user = FirebaseAuth.instance.currentUser;
@@ -19,7 +19,7 @@ class JobPage extends StatelessWidget {
       future: getUserCollection(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Scaffold(body: Center(child: CircularProgressIndicator()));
+          return const Scaffold(body: Center(child: CircularProgressIndicator()));
         }
 
         final collection = snapshot.data;
@@ -36,10 +36,10 @@ class JobPage extends StatelessWidget {
         } else {
           return Scaffold(
             appBar: AppBar(
-              title: Text('Job Page'),
+              title: const Text('Job Page'),
             ),
-            body: const Center(
-              child: Text('This is the Job Page'),
+            body: Center(
+              child: Text('This is the Job Page for $collection'),
             ),
           );
         }

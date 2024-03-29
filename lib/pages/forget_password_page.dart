@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../presentation/color_manager.dart';
 
 class ForgetPasswordPage extends StatefulWidget {
-  const ForgetPasswordPage({Key? key}) : super(key: key);
+  const ForgetPasswordPage({super.key});
 
   @override
   State<ForgetPasswordPage> createState() => _ForgetPasswordPageState();
@@ -31,9 +31,9 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
           children: [
             Image.asset('assets/images/accessable_logo_1.png'),
             // Add your PNG image here
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -43,7 +43,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                       controller: emailController,
                       decoration: InputDecoration(
                         labelText: 'Email',
-                        prefixIcon: Icon(Icons.email),
+                        prefixIcon: const Icon(Icons.email),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25.0),
                           borderSide: BorderSide(color: ColorManager.primary),
@@ -57,10 +57,10 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 25),
+                    const SizedBox(height: 25),
                     Padding(
                       padding:
-                          EdgeInsets.only(right: 15, left: 15, bottom: 25),
+                          const EdgeInsets.only(right: 15, left: 15, bottom: 25),
                       child: SizedBox(
                         width: double.infinity,
                         height: 50,
@@ -74,7 +74,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                                 showDialog(
                                   context: context,
                                   builder: (context) => AlertDialog(
-                                    title: Text('Success'),
+                                    title: const Text('Success'),
                                     content: const Text(
                                         'Password reset email sent successfully check your email to reset your password.'),
                                     actions: [
@@ -83,7 +83,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                                           // Navigator.pop(context);
                                           Navigator.pushNamed(context, '/login');
                                         },
-                                        child: Text('OK'),
+                                        child: const Text('OK'),
                                       ),
                                     ],
                                   ),
@@ -94,15 +94,15 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                                     context: context,
                                     builder: (context) {
                                       return AlertDialog(
-                                        title: Text('Error'),
+                                        title: const Text('Error'),
                                         content:
-                                            Text('No user found for that email.'),
+                                            const Text('No user found for that email.'),
                                         actions: [
                                           TextButton(
                                             onPressed: () {
                                               Navigator.pop(context);
                                             },
-                                            child: Text('OK'),
+                                            child: const Text('OK'),
                                           ),
                                         ],
                                       );
@@ -113,14 +113,14 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                                     context: context,
                                     builder: (context) {
                                       return AlertDialog(
-                                        title: Text('Error'),
+                                        title: const Text('Error'),
                                         content: Text(e.message.toString()),
                                         actions: [
                                           TextButton(
                                             onPressed: () {
                                               Navigator.pop(context);
                                             },
-                                            child: Text('OK'),
+                                            child: const Text('OK'),
                                           ),
                                         ],
                                       );

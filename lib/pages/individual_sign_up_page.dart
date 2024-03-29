@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class IndividualSignUp extends StatefulWidget {
-  const IndividualSignUp({Key? key}) : super(key: key);
+  const IndividualSignUp({super.key});
 
   @override
   _IndividualSignUpState createState() => _IndividualSignUpState();

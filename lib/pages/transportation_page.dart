@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class TransportationPage extends StatelessWidget {
-  const TransportationPage({Key? key}) : super(key: key);
+  const TransportationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Transportation Page'),
+        title: const Text('Transportation Page'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('This is the Transportation Page'),
       ),
     );

@@ -2,7 +2,7 @@ import 'package:accessable/presentation/color_manager.dart';
 import 'package:flutter/material.dart';
 
 class DrawerScreen extends StatelessWidget {
-  const DrawerScreen({Key? key}) : super(key: key);
+  const DrawerScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

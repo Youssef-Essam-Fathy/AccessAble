@@ -52,7 +52,7 @@ class RouteGenerator {
       case Routes.mainRout:
         return MaterialPageRoute(builder: (_) => const HomePage());
       case Routes.handicappedTransportationRoute:
-        return MaterialPageRoute(builder: (_) => HandicappedTransportationPage());
+        return MaterialPageRoute(builder: (_) => const HandicappedTransportationPage());
       case Routes.specifyUserPage:
         return MaterialPageRoute(builder: (_) => const SpecifyUserPage());
       case Routes.customerSignUp:
