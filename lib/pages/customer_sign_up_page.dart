@@ -24,6 +24,8 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
   final phoneController = TextEditingController();
   final aboutController = TextEditingController();
 
+  bool _isPasswordVisible = false;
+  IconData genderIcon = Icons.transgender;
   String? gender;
   String? disability;
   String? country;
@@ -102,7 +104,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   controller: lastNameController,
                   decoration: InputDecoration(
                     labelText: 'Last Name',
-                    prefixIcon: const Icon(Icons.person),
+                    prefixIcon: Icon(Icons.person),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -123,7 +125,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   value: gender,
                   decoration: InputDecoration(
                     labelText: 'Gender',
-                    prefixIcon: const Icon(Icons.person),
+                    prefixIcon: Icon(genderIcon), // Use the selected icon
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -138,6 +140,8 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   onChanged: (String? newValue) {
                     setState(() {
                       gender = newValue;
+                      // Update the icon based on the selected gender
+                      genderIcon = newValue == 'Male' ? Icons.male : Icons.female;
                     });
                   },
                   validator: (value) {
@@ -295,13 +299,24 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   controller: passwordController,
                   decoration: InputDecoration(
                     labelText: 'Password',
-                    prefixIcon: const Icon(Icons.lock),
+                    prefixIcon: Icon(Icons.lock),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _isPasswordVisible ? Icons.visibility : Icons.visibility_off, // Change the icon based on the password visibility
+                        color: Colors.black,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _isPasswordVisible = !_isPasswordVisible; // Toggle the password visibility
+                        });
+                      },
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
                     ),
                   ),
-                  obscureText: true,
+                  obscureText: !_isPasswordVisible,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter your password';
@@ -317,7 +332,18 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   controller: confirmPasswordController,
                   decoration: InputDecoration(
                     labelText: 'Confirm Password',
-                    prefixIcon: const Icon(Icons.lock),
+                    prefixIcon: Icon(Icons.lock),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _isPasswordVisible ? Icons.visibility : Icons.visibility_off, // Change the icon based on the password visibility
+                        color: Colors.black,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _isPasswordVisible = !_isPasswordVisible; // Toggle the password visibility
+                        });
+                      },
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),

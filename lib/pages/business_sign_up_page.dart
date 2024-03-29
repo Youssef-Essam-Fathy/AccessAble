@@ -1,3 +1,4 @@
+import 'package:accessable/presentation/color_manager.dart';
 import 'package:flutter/material.dart';
 
 class BusinessSignUpPage extends StatelessWidget {
@@ -13,7 +14,8 @@ class BusinessSignUpPage extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(Icons.arrow_back_ios),
+            icon: Icon(Icons.arrow_back_ios_sharp,
+                color: ColorManager.stormCloud),
           ),
         ),
         body: ListView(

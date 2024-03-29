@@ -1,4 +1,3 @@
-import 'package:accessable/pages/service_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:accessable/presentation/color_manager.dart';
 import 'drawer_screen.dart';
@@ -116,7 +115,7 @@ class HomePage extends StatelessWidget {
                     leading: Icon(Icons.directions_bus),
                     title: Text('Transportation'),
                     onTap: () {
-                      Navigator.pushNamed(context, '/TransportationPage');
+                      Navigator.pushNamed(context, '/handicappedTransportation');
                     },
                   ),
                   ListTile(
