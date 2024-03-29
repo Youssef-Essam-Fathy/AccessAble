@@ -154,9 +154,7 @@ class _SignInPageState extends State<SignInPage> {
                       onPressed: () async {
                         if (_formkey.currentState!.validate()) {
                           try {
-                            UserCredential userCredential = await FirebaseAuth
-                                .instance
-                                .signInWithEmailAndPassword(
+                            UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
                               email: _email!,
                               password: _password!,
                             );

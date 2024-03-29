@@ -35,6 +35,22 @@ class DrawerScreen extends StatelessWidget {
             },
           ),
           ListTile(
+            leading: IconButton(icon: const Icon(Icons.directions_bus),
+                onPressed: () => Navigator.pushNamed(context, '/handicappedTransportation')),
+            title: const Text('Transportation', style: TextStyle(fontSize: 25),),
+            onTap: () {
+              Navigator.pushNamed(context, '/handicappedTransportation');
+            },
+          ),
+          ListTile(
+            leading: IconButton(icon: const Icon(Icons.work),
+                onPressed: () => Navigator.pushNamed(context, '/job')),
+            title: const Text('Job', style: TextStyle(fontSize: 25),),
+            onTap: () {
+              Navigator.pushNamed(context, '/job');
+            },
+          ),
+          ListTile(
             leading: IconButton(icon: const Icon(Icons.logout),
                 onPressed: () => Navigator.pushNamed(context, '/login')),
             title: const Text('Logout', style: TextStyle(fontSize: 25),),
