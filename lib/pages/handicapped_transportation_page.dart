@@ -12,7 +12,7 @@ class HandicappedTransportationPage extends StatefulWidget {
 
 class _HandicappedTransportationPageState extends State<HandicappedTransportationPage> {
   late GoogleMapController mapController;
-  late LatLng _center;
+  late LatLng _center = const LatLng(0, 0);
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
