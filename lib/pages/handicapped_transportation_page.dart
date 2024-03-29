@@ -1,5 +1,6 @@
 import 'package:accessable/presentation/color_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class HandicappedTransportationPage extends StatefulWidget {
@@ -11,11 +12,43 @@ class HandicappedTransportationPage extends StatefulWidget {
 
 class _HandicappedTransportationPageState extends State<HandicappedTransportationPage> {
   late GoogleMapController mapController;
-
-  final LatLng _center = const LatLng(45.521563, -122.677433); // replace with your desired location
+  late LatLng _center;
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _determinePosition();
+  }
+
+  Future<void> _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+    Position position = await Geolocator.getCurrentPosition();
+    _center = LatLng(position.latitude, position.longitude);
+    mapController.moveCamera(CameraUpdate.newLatLng(_center));
   }
 
   @override
@@ -33,7 +66,7 @@ class _HandicappedTransportationPageState extends State<HandicappedTransportatio
       ),
       body: Column(
         children: [
-          Container(
+          SizedBox(
             height: MediaQuery.of(context).size.height / 2,
             child: GoogleMap(
               onMapCreated: _onMapCreated,

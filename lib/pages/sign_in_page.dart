@@ -32,6 +32,7 @@ class _SignInPageState extends State<SignInPage> {
     });
   }
 
+  @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(30.0),
