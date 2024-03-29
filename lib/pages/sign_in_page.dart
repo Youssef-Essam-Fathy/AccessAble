@@ -57,6 +57,8 @@ class _SignInPageState extends State<SignInPage> {
                     validator: (email) {
                       if (email!.isEmpty) {
                         return 'You must enter your email';
+                      } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(email)) {
+                        return 'Enter a valid email address';
                       }
                       return null;
                     },
