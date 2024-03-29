@@ -9,6 +9,7 @@ import 'package:accessable/pages/home_page.dart';
 import 'package:accessable/pages/jop_page.dart';
 import 'package:accessable/pages/notifications_page.dart';
 import 'package:accessable/pages/profile_page.dart';
+import 'package:accessable/pages/handicapped_transportation_page.dart';
 import 'package:accessable/pages/sign_in_page.dart';
 import 'package:accessable/pages/transportation_page.dart';
 import 'package:accessable/screens/splash_screen.dart';
@@ -30,6 +31,7 @@ class Routes {
   static const String registerRout = "/register";
   static const String forgotPasswordRout = "/forgetPassword";
   static const String mainRout = "/main";
+  static const String handicappedTransportationRoute = "/handicappedTransportation";
   static const String specifyUserPage = "/specifyUserPage";
   static const String customerSignUp = "/customerSignUp";
   static const String businessSignUp = "/businessSignUp";
@@ -55,6 +57,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ForgetPasswordPage());
       case Routes.mainRout:
         return MaterialPageRoute(builder: (_) => const HomePage());
+      case Routes.handicappedTransportationRoute:
+        return MaterialPageRoute(builder: (_) => HandicappedTransportationPage());
       case Routes.specifyUserPage:
         return MaterialPageRoute(builder: (_) => const SpecifyUserPage());
       case Routes.customerSignUp:

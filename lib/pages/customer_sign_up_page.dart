@@ -24,6 +24,8 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
   final phoneController = TextEditingController();
   final aboutController = TextEditingController();
 
+  bool _isPasswordVisible = false;
+  IconData genderIcon = Icons.transgender;
   String? gender;
   String? disability;
   String? country;
@@ -81,7 +83,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   controller: firstNameController,
                   decoration: InputDecoration(
                     labelText: 'First Name',
-                    prefixIcon: Icon(Icons.person),
+                    prefixIcon: const Icon(Icons.person),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -123,7 +125,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   value: gender,
                   decoration: InputDecoration(
                     labelText: 'Gender',
-                    prefixIcon: Icon(Icons.person),
+                    prefixIcon: Icon(genderIcon), // Use the selected icon
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -138,6 +140,8 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   onChanged: (String? newValue) {
                     setState(() {
                       gender = newValue;
+                      // Update the icon based on the selected gender
+                      genderIcon = newValue == 'Male' ? Icons.male : Icons.female;
                     });
                   },
                   validator: (value) {
@@ -155,7 +159,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   controller: ageController,
                   decoration: InputDecoration(
                     labelText: 'Age',
-                    prefixIcon: Icon(Icons.calendar_today),
+                    prefixIcon: const Icon(Icons.calendar_today),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -177,7 +181,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   value: disability,
                   decoration: InputDecoration(
                     labelText: 'Disability',
-                    prefixIcon: Icon(Icons.accessible),
+                    prefixIcon: const Icon(Icons.accessible),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -218,7 +222,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   value: country,
                   decoration: InputDecoration(
                     labelText: 'Country',
-                    prefixIcon: Icon(Icons.location_on),
+                    prefixIcon: const Icon(Icons.location_on),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -251,7 +255,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   controller: phoneController,
                   decoration: InputDecoration(
                     labelText: 'Phone',
-                    prefixIcon: Icon(Icons.phone),
+                    prefixIcon: const Icon(Icons.phone),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -273,7 +277,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   controller: emailController,
                   decoration: InputDecoration(
                     labelText: 'Email',
-                    prefixIcon: Icon(Icons.email),
+                    prefixIcon: const Icon(Icons.email),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -296,12 +300,23 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   decoration: InputDecoration(
                     labelText: 'Password',
                     prefixIcon: Icon(Icons.lock),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _isPasswordVisible ? Icons.visibility : Icons.visibility_off, // Change the icon based on the password visibility
+                        color: Colors.black,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _isPasswordVisible = !_isPasswordVisible; // Toggle the password visibility
+                        });
+                      },
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
                     ),
                   ),
-                  obscureText: true,
+                  obscureText: !_isPasswordVisible,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter your password';
@@ -318,6 +333,17 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   decoration: InputDecoration(
                     labelText: 'Confirm Password',
                     prefixIcon: Icon(Icons.lock),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _isPasswordVisible ? Icons.visibility : Icons.visibility_off, // Change the icon based on the password visibility
+                        color: Colors.black,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _isPasswordVisible = !_isPasswordVisible; // Toggle the password visibility
+                        });
+                      },
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -342,7 +368,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   controller: aboutController,
                   decoration: InputDecoration(
                     labelText: 'About',
-                    prefixIcon: Icon(Icons.info),
+                    prefixIcon: const Icon(Icons.info),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
