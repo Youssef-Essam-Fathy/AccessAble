@@ -1,7 +1,8 @@
+import 'package:accessable/presentation/color_manager.dart';
 import 'package:flutter/material.dart';
 
 class BusinessSignUpPage extends StatelessWidget {
-  const BusinessSignUpPage({Key? key}) : super(key: key);
+  const BusinessSignUpPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,8 @@ class BusinessSignUpPage extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(Icons.arrow_back_ios),
+            icon: Icon(Icons.arrow_back_ios_sharp,
+                color: ColorManager.stormCloud),
           ),
         ),
         body: ListView(
@@ -52,7 +54,7 @@ class BusinessSignUpPage extends StatelessWidget {
                         width: MediaQuery.of(context).size.width * 0.25,
                         fit: BoxFit.cover,
                       ),
-                      Text(
+                      const Text(
                         'Company',
                         style: TextStyle(
                           color: Colors.blue,
@@ -73,7 +75,7 @@ class BusinessSignUpPage extends StatelessWidget {
                         width: MediaQuery.of(context).size.width * 0.25,
                         fit: BoxFit.cover,
                       ),
-                      Text(
+                      const Text(
                         'Individual',
                         style: TextStyle(
                           color: Colors.blue,

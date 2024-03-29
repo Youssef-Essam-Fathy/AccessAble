@@ -1,22 +1,20 @@
 
-import 'package:accessable/pages/community_page.dart';
 import 'package:accessable/pages/company_sign_up_page.dart';
-import 'package:accessable/pages/contact_us.dart';
 import 'package:accessable/pages/customer_sign_up_page.dart';
 
 import 'package:accessable/pages/forget_password_page.dart';
 import 'package:accessable/pages/home_page.dart';
-import 'package:accessable/pages/jop_page.dart';
 import 'package:accessable/pages/notifications_page.dart';
 import 'package:accessable/pages/profile_page.dart';
+import 'package:accessable/pages/handicapped_transportation_page.dart';
 import 'package:accessable/pages/sign_in_page.dart';
-import 'package:accessable/pages/transportation_page.dart';
 import 'package:accessable/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:accessable/pages/business_sign_up_page.dart';
 import 'package:accessable/pages/specify_user_page.dart';
 import 'package:accessable/pages/individual_sign_up_page.dart';
+import '../../pages/jop_page.dart';
 import 'strings_manager.dart';
 
 // to add new page follow that 3 steps
@@ -30,6 +28,7 @@ class Routes {
   static const String registerRout = "/register";
   static const String forgotPasswordRout = "/forgetPassword";
   static const String mainRout = "/main";
+  static const String handicappedTransportationRoute = "/handicappedTransportation";
   static const String specifyUserPage = "/specifyUserPage";
   static const String customerSignUp = "/customerSignUp";
   static const String businessSignUp = "/businessSignUp";
@@ -37,10 +36,7 @@ class Routes {
   static  const String notificationsRoute = "/notifications";
   static const String profileRoute = "/profile";
   static const String companySignUp = "/companySignUp";
-  static const String jobRout = "/jobpage";
-  static const String contactUsRout = "/contactUs";
-  static const String transportationRout = "/TransportationPage";
-  static const String communityRout = "/communityPage";
+  static const String jobRoute = "/job";
 
 }
 
@@ -55,6 +51,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ForgetPasswordPage());
       case Routes.mainRout:
         return MaterialPageRoute(builder: (_) => const HomePage());
+      case Routes.handicappedTransportationRoute:
+        return MaterialPageRoute(builder: (_) => const HandicappedTransportationPage());
       case Routes.specifyUserPage:
         return MaterialPageRoute(builder: (_) => const SpecifyUserPage());
       case Routes.customerSignUp:
@@ -69,14 +67,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ProfilePage());
       case Routes.companySignUp:
         return MaterialPageRoute(builder: (_) => const CompanySignUp());
-      case Routes.jobRout:
+      case Routes.jobRoute:
         return MaterialPageRoute(builder: (_) => const JobPage());
-      case Routes.transportationRout:
-        return MaterialPageRoute(builder: (_) => const TransportationPage());
-      case Routes.contactUsRout:
-        return MaterialPageRoute(builder: (_) => const ContactUsPage());
-      case Routes.communityRout:
-        return MaterialPageRoute(builder: (_) => const CommunityPage());
       default:
         return _unDefinedRout();
     }

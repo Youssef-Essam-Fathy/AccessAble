@@ -2,7 +2,7 @@ import 'package:accessable/presentation/color_manager.dart';
 import 'package:flutter/material.dart';
 
 class CompanySignUp extends StatefulWidget {
-  const CompanySignUp({Key? key}) : super(key: key);
+  const CompanySignUp({super.key});
 
   @override
   _CompanySignUpState createState() => _CompanySignUpState();
@@ -33,7 +33,8 @@ class _CompanySignUpState extends State<CompanySignUp> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(Icons.arrow_back_ios),
+            icon: Icon(Icons.arrow_back_ios_sharp,
+                color: ColorManager.stormCloud),
           ),
         ),
         body: Form(

@@ -1,11 +1,10 @@
-import 'package:accessable/pages/service_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:accessable/presentation/color_manager.dart';
 import 'drawer_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -66,64 +65,20 @@ class HomePage extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ServiceDetailsPage(
-                              imagePath: 'assets/images/h_transportation_2.svg',
-                              title: 'Handicapped Transportation',
-                              description:
-                                  'Detailed description about the service...',
-                            ),
-                          ),
-                        );
+                        Navigator.pushNamed(context, '/handicappedTransportation');
                       },
                       child: SvgPicture.asset(
                         'assets/images/h_transportation_2.svg',
-                        fit: BoxFit
-                            .cover, // This will make the SVG cover the entire card
+                        fit: BoxFit.cover, // This will make the SVG cover the entire card
                       ),
                     ),
-                    const SizedBox(height: 35),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ServiceDetailsPage(
-                              imagePath: 'assets/images/h_transportation_2.jpg',
-                              title: 'Handicapped Transportation',
-                              description:
-                                  'Detailed description about the service...',
-                            ),
-                          ),
-                        );
+                        Navigator.pushNamed(context, '/job');
                       },
-                      child: Image.asset(
-                        'assets/images/h_transportation_2.jpg',
-                        fit: BoxFit
-                            .cover, // This will make the image cover the entire card
-                      ),
-                    ),
-                    const SizedBox(height: 35),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ServiceDetailsPage(
-                              imagePath: 'assets/images/h_transportation_2.jpg',
-                              title: 'Handicapped Transportation',
-                              description:
-                                  'Detailed description about the service...',
-                            ),
-                          ),
-                        );
-                      },
-                      child: Image.asset(
-                        'assets/images/h_transportation_2.jpg',
-                        fit: BoxFit
-                            .cover, // This will make the image cover the entire card
+                      child: SvgPicture.asset(
+                        'assets/images/h_job_2.svg',
+                        fit: BoxFit.cover, // This will make the SVG cover the entire card
                       ),
                     ),
                   ],
@@ -131,6 +86,41 @@ class HomePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
+            Expanded(
+              child: ListView(
+                children: [
+                  ListTile(
+                    leading: const Icon(Icons.work),
+                    title: const Text('Jobs You Deserve'),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/job');
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.directions_bus),
+                    title: const Text('Transportation'),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/handicappedTransportation');
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.people),
+                    title: const Text('Community'),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/communityPage');
+                    },
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Text(
+                      'Contact Us',
+                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  // Add your Contact Us details here
+                ],
+              ),
+            ),
           ],
         ),
         drawer: const DrawerScreen(), // Add this line
