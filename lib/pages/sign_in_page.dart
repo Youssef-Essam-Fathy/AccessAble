@@ -57,7 +57,8 @@ class _SignInPageState extends State<SignInPage> {
                     validator: (email) {
                       if (email!.isEmpty) {
                         return 'You must enter your email';
-                      } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(email)) {
+                      } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
+                          .hasMatch(email)) {
                         return 'Enter a valid email address';
                       }
                       return null;
@@ -168,8 +169,8 @@ class _SignInPageState extends State<SignInPage> {
                                 builder: (BuildContext context) {
                                   return AlertDialog(
                                     title: const Text('Error'),
-                                    content:
-                                        const Text('No user found for that email.'),
+                                    content: const Text(
+                                        'No user found for that email.'),
                                     actions: <Widget>[
                                       TextButton(
                                         child: const Text('OK'),

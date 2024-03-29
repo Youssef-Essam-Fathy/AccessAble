@@ -1,4 +1,6 @@
 import 'package:accessable/presentation/color_manager.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class IndividualSignUp extends StatefulWidget {
@@ -10,17 +12,49 @@ class IndividualSignUp extends StatefulWidget {
 
 class _IndividualSignUpState extends State<IndividualSignUp> {
   final _formKey = GlobalKey<FormState>();
-  // Define your text controllers and variables here
+
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final ageController = TextEditingController();
-  final disabilityController = TextEditingController();
+  final serviceTypeController = TextEditingController();
   final countryController = TextEditingController();
   final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
   final phoneController = TextEditingController();
   final aboutController = TextEditingController();
+
   String? gender;
   String? serviceType;
+  String? country;
+
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  // List of Arabic countries and their phone codes
+  final Map<String, String> countries = {
+    'Algeria': '+213',
+    'Bahrain': '+973',
+    'Comoros': '+269',
+    'Djibouti': '+253',
+    'Egypt': '+20',
+    'Iraq': '+964',
+    'Jordan': '+962',
+    'Kuwait': '+965',
+    'Lebanon': '+961',
+    'Libya': '+218',
+    'Mauritania': '+222',
+    'Morocco': '+212',
+    'Oman': '+968',
+    'Palestine': '+970',
+    'Qatar': '+974',
+    'Saudi Arabia': '+966',
+    'Somalia': '+252',
+    'Sudan': '+249',
+    'Syria': '+963',
+    'Tunisia': '+216',
+    'United Arab Emirates': '+971',
+    'Yemen': '+967',
+  };
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,34 +75,13 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
             children: <Widget>[
               Image.asset('assets/images/accessable_logo_1.png'),
               const SizedBox(height: 35),
-              // Add your TextFormFields here
               Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15),
+                padding: const EdgeInsets.only(right: 15, left: 15),
                 child: TextFormField(
                   controller: firstNameController,
                   decoration: InputDecoration(
                     labelText: 'First Name',
                     prefixIcon: const Icon(Icons.person),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(color: ColorManager.primary),
-                    ),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your first name';
-                    }
-                    return null;
-                  },
-                ),
-              ),
-              const SizedBox(height: 25),
-              Padding(
-                padding: const EdgeInsets.only(right: 15, left: 15),
-                child: TextFormField(
-                  controller: lastNameController,
-                  decoration: InputDecoration(
-                    labelText: 'Last Name',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -84,11 +97,12 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
               ),
               const SizedBox(height: 25),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+                padding: const EdgeInsets.only(right: 15, left: 15),
                 child: TextFormField(
-                  controller: ageController,
+                  controller: lastNameController,
                   decoration: InputDecoration(
-                    labelText: 'Age',
+                    labelText: 'Last Name',
+                    prefixIcon: const Icon(Icons.person),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -96,7 +110,7 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your age';
+                      return 'Please enter your last name';
                     }
                     return null;
                   },
@@ -104,11 +118,12 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
               ),
               const SizedBox(height: 25),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+                padding: const EdgeInsets.only(right: 15, left: 15),
                 child: DropdownButtonFormField<String>(
                   value: gender,
                   decoration: InputDecoration(
                     labelText: 'Gender',
+                    prefixIcon: const Icon(Icons.person),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -125,7 +140,6 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
                       gender = newValue;
                     });
                   },
-
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please select your gender';
@@ -136,17 +150,43 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
               ),
               const SizedBox(height: 25),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: DropdownButtonFormField<String>(
-                  value: serviceType,
+                padding: const EdgeInsets.only(right: 15, left: 15),
+                child: TextFormField(
+                  controller: ageController,
                   decoration: InputDecoration(
-                    labelText: 'Service Type',
+                    labelText: 'Age',
+                    prefixIcon: const Icon(Icons.calendar_today),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
                     ),
                   ),
-                  items: <String>['Transportation', 'Job Provider'].map((String value) {
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your age';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              const SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.only(right: 15, left: 15),
+                child: DropdownButtonFormField<String>(
+                  value: serviceType,
+                  decoration: InputDecoration(
+                    labelText: 'service type',
+                    prefixIcon: const Icon(Icons.accessible),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide(color: ColorManager.primary),
+                    ),
+                  ),
+                  items: <String>[
+                    'transportation provider',
+                    'jop provider',
+                  ].map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
@@ -159,7 +199,7 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
                   },
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please select your service type';
+                      return 'Please select your disability';
                     }
                     return null;
                   },
@@ -168,39 +208,31 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
               const SizedBox(height: 25),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: TextFormField(
-                  controller: countryController,
+                child: DropdownButtonFormField<String>(
+                  value: country,
                   decoration: InputDecoration(
                     labelText: 'Country',
+                    prefixIcon: const Icon(Icons.location_on),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
                     ),
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your country';
-                    }
-                    return null;
+                  items: countries.keys.map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      country = newValue;
+                      phoneController.text = countries[newValue] ?? '';
+                    });
                   },
-                ),
-              ),
-              const SizedBox(height: 25),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: TextFormField(
-                  controller: emailController,
-                  decoration: InputDecoration(
-                    labelText: 'Email',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(color: ColorManager.primary),
-                    ),
-                  ),
-                  keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your email';
+                      return 'Please select your country';
                     }
                     return null;
                   },
@@ -213,6 +245,7 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
                   controller: phoneController,
                   decoration: InputDecoration(
                     labelText: 'Phone',
+                    prefixIcon: const Icon(Icons.phone),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -229,22 +262,86 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
               ),
               const SizedBox(height: 25),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+                padding: const EdgeInsets.only(right: 15, left: 15),
                 child: TextFormField(
-                  controller: aboutController,
+                  controller: emailController,
                   decoration: InputDecoration(
-                    labelText: 'About',
+                    labelText: 'Email',
+                    prefixIcon: const Icon(Icons.email),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
                     ),
                   ),
+                  keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter a brief description about yourself';
+                      return 'Please enter your email';
                     }
                     return null;
                   },
+                ),
+              ),
+              const SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.only(right: 15, left: 15),
+                child: TextFormField(
+                  controller: passwordController,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    prefixIcon: const Icon(Icons.lock),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide(color: ColorManager.primary),
+                    ),
+                  ),
+                  obscureText: true,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your password';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              const SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.only(right: 15, left: 15),
+                child: TextFormField(
+                  controller: confirmPasswordController,
+                  decoration: InputDecoration(
+                    labelText: 'Confirm Password',
+                    prefixIcon: const Icon(Icons.lock),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide(color: ColorManager.primary),
+                    ),
+                  ),
+                  obscureText: true,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please confirm your password';
+                    }
+                    if (value != passwordController.text) {
+                      return 'Passwords do not match';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              const SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.only(right: 15, left: 15),
+                child: TextFormField(
+                  controller: aboutController,
+                  decoration: InputDecoration(
+                    labelText: 'About',
+                    prefixIcon: const Icon(Icons.info),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide(color: ColorManager.primary),
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(height: 25),
@@ -254,10 +351,45 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        // Handle sign up
-                        Navigator.pushNamed(context, '/signIn');
+                        try {
+                          UserCredential userCredential = await FirebaseAuth
+                              .instance
+                              .createUserWithEmailAndPassword(
+                            email: emailController.text,
+                            password: passwordController.text,
+                          );
+                          // If the previous line doesn't throw an error, the user is created
+                          // Now, send the email verification
+                          await userCredential.user!.sendEmailVerification();
+                          // After this line, the verification email is sent to the user
+
+                          // Save the user data to Firestore
+                          await _firestore
+                              .collection('business_individuals')
+                              .doc(userCredential.user!.uid)
+                              .set({
+                            'firstName': firstNameController.text,
+                            'lastName': lastNameController.text,
+                            'age': ageController.text,
+                            'disability': serviceTypeController.text,
+                            'country': countryController.text,
+                            'email': emailController.text,
+                            'phone': phoneController.text,
+                            'about': aboutController.text,
+                            'gender': gender,
+                            'serviceType': serviceType,
+                          });
+
+                          Navigator.pushNamed(context, '/main');
+                        } on FirebaseAuthException catch (e) {
+                          if (e.code == 'email-already-in-use') {
+                            print('The account already exists for that email.');
+                          }
+                        } catch (e) {
+                          print(e);
+                        }
                       }
                     },
                     style: ElevatedButton.styleFrom(
