@@ -13,9 +13,11 @@ class HandicappedTransportationPage extends StatefulWidget {
 class _HandicappedTransportationPageState extends State<HandicappedTransportationPage> {
   late GoogleMapController mapController;
   late LatLng _center = const LatLng(0, 0);
+  bool isMapControllerInitialized = false; // Declare the variable here
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
+    isMapControllerInitialized = true; // Set the flag to true here
   }
 
   @override
@@ -48,7 +50,9 @@ class _HandicappedTransportationPageState extends State<HandicappedTransportatio
 
     Position position = await Geolocator.getCurrentPosition();
     _center = LatLng(position.latitude, position.longitude);
-    mapController.moveCamera(CameraUpdate.newLatLng(_center));
+    if (isMapControllerInitialized) { // Check if mapController is initialized before using it
+      mapController.moveCamera(CameraUpdate.newLatLng(_center));
+    }
   }
 
   @override
@@ -64,20 +68,31 @@ class _HandicappedTransportationPageState extends State<HandicappedTransportatio
               color: ColorManager.stormCloud),
         ),
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height / 2,
-            child: GoogleMap(
-              onMapCreated: _onMapCreated,
-              initialCameraPosition: CameraPosition(
-                target: _center,
-                zoom: 11.0,
-              ),
-            ),
-          ),
-          // Add your price display widget here
-        ],
+      body: FutureBuilder(
+        future: _determinePosition(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else {
+            return Column(
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 2,
+                  child: GoogleMap(
+                    onMapCreated: _onMapCreated,
+                    initialCameraPosition: CameraPosition(
+                      target: _center,
+                      zoom: 11.0,
+                    ),
+                  ),
+                ),
+                // Add your price display widget here
+              ],
+            );
+          }
+        },
       ),
     );
   }
