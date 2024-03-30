@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class JobFormPage extends StatefulWidget {
+  const JobFormPage({super.key});
+
   @override
   _JobFormPageState createState() => _JobFormPageState();
 }
 
 class _JobFormPageState extends State<JobFormPage> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _positionController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _lineOfServiceController =
       TextEditingController();
@@ -38,6 +41,7 @@ class _JobFormPageState extends State<JobFormPage> {
 
   @override
   void dispose() {
+    _positionController.dispose();
     _descriptionController.dispose();
     _lineOfServiceController.dispose();
     _industrySectorController.dispose();
@@ -60,7 +64,7 @@ class _JobFormPageState extends State<JobFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Job Form'),
+        title: const Text('Add Job Form'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_sharp),
           onPressed: () {
@@ -71,9 +75,10 @@ class _JobFormPageState extends State<JobFormPage> {
       body: Form(
         key: _formKey,
         child: ListView(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           children: <Widget>[
             // Add TextFormField for each field
+            _buildTextField(_positionController, 'Position'),
             _buildTextField(_descriptionController, 'Description'),
             _buildTextField(_lineOfServiceController, 'Line of Service'),
             _buildTextField(_industrySectorController, 'Industry/Sector'),
@@ -108,6 +113,7 @@ class _JobFormPageState extends State<JobFormPage> {
                   if (snapshot.docs.isEmpty) {
                     // Job doesn't exist, add new job to 'work' collection
                     await FirebaseFirestore.instance.collection('work').add({
+                      'Position': _positionController.text,
                       'description': _descriptionController.text,
                       'lineOfService': _lineOfServiceController.text,
                       'industrySector': _industrySectorController.text,
@@ -128,17 +134,17 @@ class _JobFormPageState extends State<JobFormPage> {
                     });
 
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Job added successfully')),
+                      const SnackBar(content: Text('Job added successfully')),
                     );
                   } else {
                     // Job already exists, show error message
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Job already exists')),
+                      const SnackBar(content: Text('Job already exists')),
                     );
                   }
                 }
               },
-              child: Text('Submit'),
+              child: const Text('Submit'),
             ),
           ],
         ),

@@ -56,8 +56,10 @@ class _JobPageState extends State<JobPage> {
         ),
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('work').snapshots(),        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        stream: FirebaseFirestore.instance.collection('work').snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
+            print('Error: ${snapshot.error}');
             return Text('Error: ${snapshot.error}');
           }
 
@@ -67,16 +69,21 @@ class _JobPageState extends State<JobPage> {
 
           final jobs = snapshot.data!.docs
               .map((doc) => doc.data() as Map<String, dynamic>)
-              .where((job) => job['jobTitle']?.contains(_searchQuery) ?? false)
+              .where(
+                  (job) => job['description']?.contains(_searchQuery) ?? false)
               .toList();
+
+          if (jobs.isEmpty) {
+            return const Text('No jobs found');
+          }
 
           return ListView.builder(
             itemCount: jobs.length,
             itemBuilder: (context, index) {
               final job = jobs[index];
               return ListTile(
-                title: Text(job['jobTitle']),
-                subtitle: Text(job['companyName']),
+                title: Text(job['Position'] ?? 'No title'),
+                subtitle: Text(job['emailToConnect'] ?? 'No company name'),
               );
             },
           );
