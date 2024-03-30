@@ -27,6 +27,7 @@ class _CompanySignUpState extends State<CompanySignUp> {
   String? country;
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   // List of Arabic countries and their phone codes
   final Map<String, String> countries = {
     'Algeria': '+213',
@@ -52,7 +53,6 @@ class _CompanySignUpState extends State<CompanySignUp> {
     'United Arab Emirates': '+971',
     'Yemen': '+967',
   };
-
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +101,7 @@ class _CompanySignUpState extends State<CompanySignUp> {
                   value: serviceType,
                   decoration: InputDecoration(
                     labelText: 'service type',
-                    prefixIcon: const Icon(Icons.accessible),
+                    prefixIcon: const Icon(Icons.work),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -304,13 +304,32 @@ class _CompanySignUpState extends State<CompanySignUp> {
                             'serviceType': serviceType,
                           });
 
+                          // Show a SnackBar with a success message
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Signed up successfully!')),
+                          );
+
                           Navigator.pushNamed(context, '/main');
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'email-already-in-use') {
                             print('The account already exists for that email.');
+
+                            // Show a SnackBar with an error message
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                  content: Text(
+                                      'The account already exists for that email.')),
+                            );
                           }
                         } catch (e) {
                           print(e);
+
+                          // Show a SnackBar with an error message
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                                content: Text(
+                                    'An error occurred. Please try again.')),
+                          );
                         }
                       }
                     },
