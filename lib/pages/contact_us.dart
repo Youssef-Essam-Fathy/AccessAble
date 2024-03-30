@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class ContactUsPage extends StatelessWidget {
-  const ContactUsPage({Key? key}) : super(key: key);
+  const ContactUsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Contact Us Page'),
+        title: const Text('Contact Us Page'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('This is the Contact Us Page'),
       ),
     );

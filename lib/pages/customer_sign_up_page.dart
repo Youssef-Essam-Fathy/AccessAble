@@ -12,6 +12,7 @@ class CustomerSignUpPage extends StatefulWidget {
 
 class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
   final _formKey = GlobalKey<FormState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
@@ -60,9 +61,8 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(30.0),
-      child: Scaffold(
+    return Scaffold(
+      key: _scaffoldKey,
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
@@ -104,7 +104,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   controller: lastNameController,
                   decoration: InputDecoration(
                     labelText: 'Last Name',
-                    prefixIcon: Icon(Icons.person),
+                    prefixIcon: const Icon(Icons.person),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide(color: ColorManager.primary),
@@ -299,7 +299,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   controller: passwordController,
                   decoration: InputDecoration(
                     labelText: 'Password',
-                    prefixIcon: Icon(Icons.lock),
+                    prefixIcon: const Icon(Icons.lock),
                     suffixIcon: IconButton(
                       icon: Icon(
                         _isPasswordVisible ? Icons.visibility : Icons.visibility_off, // Change the icon based on the password visibility
@@ -332,7 +332,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                   controller: confirmPasswordController,
                   decoration: InputDecoration(
                     labelText: 'Confirm Password',
-                    prefixIcon: Icon(Icons.lock),
+                    prefixIcon: const Icon(Icons.lock),
                     suffixIcon: IconButton(
                       icon: Icon(
                         _isPasswordVisible ? Icons.visibility : Icons.visibility_off, // Change the icon based on the password visibility
@@ -399,7 +399,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
 
                           // Save the user data to Firestore
                           await _firestore
-                              .collection('users')
+                              .collection('customers')
                               .doc(userCredential.user!.uid)
                               .set({
                             'firstName': firstNameController.text,
@@ -417,7 +417,11 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                           Navigator.pushNamed(context, '/main');
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'email-already-in-use') {
-                            print('The account already exists for that email.');
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('The account already exists for that email.'),
+                              ),
+                            );
                           }
                         } catch (e) {
                           print(e);
@@ -443,7 +447,6 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }

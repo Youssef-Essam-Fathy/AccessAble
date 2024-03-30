@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:accessable/pages/business_sign_up_page.dart';
 import 'package:accessable/pages/specify_user_page.dart';
 import 'package:accessable/pages/individual_sign_up_page.dart';
+import '../../pages/jop_page.dart';
 import 'strings_manager.dart';
 
 // to add new page follow that 3 steps
@@ -35,6 +36,7 @@ class Routes {
   static  const String notificationsRoute = "/notifications";
   static const String profileRoute = "/profile";
   static const String companySignUp = "/companySignUp";
+  static const String jobRoute = "/job";
 
 }
 
@@ -50,7 +52,7 @@ class RouteGenerator {
       case Routes.mainRout:
         return MaterialPageRoute(builder: (_) => const HomePage());
       case Routes.handicappedTransportationRoute:
-        return MaterialPageRoute(builder: (_) => HandicappedTransportationPage());
+        return MaterialPageRoute(builder: (_) => const HandicappedTransportationPage());
       case Routes.specifyUserPage:
         return MaterialPageRoute(builder: (_) => const SpecifyUserPage());
       case Routes.customerSignUp:
@@ -65,6 +67,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ProfilePage());
       case Routes.companySignUp:
         return MaterialPageRoute(builder: (_) => const CompanySignUp());
+      case Routes.jobRoute:
+        return MaterialPageRoute(builder: (_) => const JobPage());
       default:
         return _unDefinedRout();
     }

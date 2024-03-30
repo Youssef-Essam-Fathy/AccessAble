@@ -2,7 +2,7 @@ import 'package:accessable/presentation/color_manager.dart';
 import 'package:flutter/material.dart';
 
 class DrawerScreen extends StatelessWidget {
-  const DrawerScreen({Key? key}) : super(key: key);
+  const DrawerScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +32,22 @@ class DrawerScreen extends StatelessWidget {
             title: const Text('Home', style: TextStyle(fontSize: 25),),
             onTap: () {
               Navigator.pushNamed(context, '/main');
+            },
+          ),
+          ListTile(
+            leading: IconButton(icon: const Icon(Icons.directions_bus),
+                onPressed: () => Navigator.pushNamed(context, '/handicappedTransportation')),
+            title: const Text('Transportation', style: TextStyle(fontSize: 25),),
+            onTap: () {
+              Navigator.pushNamed(context, '/handicappedTransportation');
+            },
+          ),
+          ListTile(
+            leading: IconButton(icon: const Icon(Icons.work),
+                onPressed: () => Navigator.pushNamed(context, '/job')),
+            title: const Text('Job', style: TextStyle(fontSize: 25),),
+            onTap: () {
+              Navigator.pushNamed(context, '/job');
             },
           ),
           ListTile(
