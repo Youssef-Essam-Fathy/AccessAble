@@ -64,14 +64,13 @@ class _JobFormPageState extends State<JobFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Job Form'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_sharp),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        )
-      ),
+          title: const Text('Add Job Form'),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios_sharp),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          )),
       body: Form(
         key: _formKey,
         child: ListView(
@@ -103,11 +102,9 @@ class _JobFormPageState extends State<JobFormPage> {
                   // Check if job already exists in 'work' collection
                   final snapshot = await FirebaseFirestore.instance
                       .collection('work')
-                      .where('description',
-                          isEqualTo: _descriptionController.text)
-                      .where('lineOfService',
-                          isEqualTo: _lineOfServiceController.text)
-                      // Add more where clauses for each field
+                      .where('Position', isEqualTo: _positionController.text)
+                      .where('emailToConnect',
+                          isEqualTo: _emailToConnectController.text)
                       .get();
 
                   if (snapshot.docs.isEmpty) {
@@ -161,6 +158,13 @@ class _JobFormPageState extends State<JobFormPage> {
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Please enter a $label';
+        }
+        if (label == 'Email to connect') {
+          // Regular expression for email validation
+          String emailRegex = r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$';
+          if (!RegExp(emailRegex).hasMatch(value)) {
+            return 'Please enter a valid email';
+          }
         }
         return null;
       },

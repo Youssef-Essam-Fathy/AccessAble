@@ -3,6 +3,8 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'jop_page_view.dart';
+
 class JobPage extends StatefulWidget {
   const JobPage({Key? key}) : super(key: key);
 
@@ -69,8 +71,7 @@ class _JobPageState extends State<JobPage> {
 
           final jobs = snapshot.data!.docs
               .map((doc) => doc.data() as Map<String, dynamic>)
-              .where(
-                  (job) => job['description']?.contains(_searchQuery) ?? false)
+              .where((job) => job['Position']?.contains(_searchQuery) ?? false)
               .toList();
 
           if (jobs.isEmpty) {
@@ -81,9 +82,20 @@ class _JobPageState extends State<JobPage> {
             itemCount: jobs.length,
             itemBuilder: (context, index) {
               final job = jobs[index];
-              return ListTile(
-                title: Text(job['Position'] ?? 'No title'),
-                subtitle: Text(job['emailToConnect'] ?? 'No company name'),
+              return InkWell(
+                onTap: () {
+                  // Navigate to JobViewPage with job data
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => JobViewPage(job: job),
+                    ),
+                  );
+                },
+                child: ListTile(
+                  title: Text(job['Position'] ?? 'No title'),
+                  subtitle: Text(job['emailToConnect'] ?? 'No company name'),
+                ),
               );
             },
           );
