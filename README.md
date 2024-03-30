@@ -1,4 +1,4 @@
-# Accessable
+# AccessAble
 
 Accessable is a mobile application designed to assist individuals with disabilities in transportation and employment opportunities. Our mission is to provide a seamless experience for people of determination, making their lives easier and more accessible.
 
