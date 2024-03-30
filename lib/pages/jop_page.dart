@@ -1,49 +1,97 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class JobPage extends StatelessWidget {
-  const JobPage({super.key});
+class JobPage extends StatefulWidget {
+  const JobPage({Key? key}) : super(key: key);
 
-  Future<String> getUserCollection() async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user == null) return '';
+  @override
+  _JobPageState createState() => _JobPageState();
+}
 
-    final doc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
-    return doc['collection'] as String;
+class _JobPageState extends State<JobPage> {
+  final TextEditingController _searchController = TextEditingController();
+  String _searchQuery = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController.addListener(() {
+      setState(() {
+        _searchQuery = _searchController.text;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<String>(
-      future: getUserCollection(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Scaffold(body: Center(child: CircularProgressIndicator()));
-        }
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Job Page'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_sharp),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(48.0),
+          child: Padding(
+            padding: const EdgeInsets.all(0.0),
+            child: TextField(
+              controller: _searchController,
+              decoration: const InputDecoration(
+                labelText: 'Search',
+                border: OutlineInputBorder(),
+              ),
+            ),
+          ),
+        ),
+      ),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection('work').snapshots(),        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          }
 
-        final collection = snapshot.data;
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
 
-        if (collection == 'customers') {
-          return Scaffold(
-            appBar: AppBar(
-              title: Text('Job Page for $collection'),
-            ),
-            body: Center(
-              child: Text('This is the Job Page for $collection'),
-            ),
+          final jobs = snapshot.data!.docs
+              .map((doc) => doc.data() as Map<String, dynamic>)
+              .where((job) => job['jobTitle']?.contains(_searchQuery) ?? false)
+              .toList();
+
+          return ListView.builder(
+            itemCount: jobs.length,
+            itemBuilder: (context, index) {
+              final job = jobs[index];
+              return ListTile(
+                title: Text(job['jobTitle']),
+                subtitle: Text(job['companyName']),
+              );
+            },
           );
-        } else {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('Job Page'),
-            ),
-            body: Center(
-              child: Text('This is the Job Page for $collection'),
-            ),
-          );
-        }
-      },
+        },
+      ),
+      floatingActionButton: SpeedDial(
+        animatedIcon: AnimatedIcons.menu_close,
+        children: [
+          SpeedDialChild(
+            child: Icon(Icons.add),
+            label: 'Add Job Form',
+            onTap: () => Navigator.pushNamed(context, '/jobForm'),
+          ),
+        ],
+      ),
     );
   }
 }
