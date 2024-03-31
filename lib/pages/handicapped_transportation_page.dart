@@ -33,17 +33,6 @@ class _HandicappedTransportationPageState
     return ClipRRect(
         borderRadius: BorderRadius.circular(30), // adjust the curve as needed
         child: Scaffold(
-          appBar: AppBar(
-            title: const Text('Handicapped Transportation'),
-            backgroundColor: ColorManager.primary,
-            leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.arrow_back_ios_sharp,
-                  color: ColorManager.stormCloud),
-            ),
-          ),
           body: GoogleMap(
             mapType: MapType.hybrid,
             initialCameraPosition: _kGooglePlex,
