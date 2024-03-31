@@ -1,4 +1,5 @@
 
+import 'package:accessable/pages/Job_form.dart';
 import 'package:accessable/pages/company_sign_up_page.dart';
 import 'package:accessable/pages/customer_sign_up_page.dart';
 
@@ -37,6 +38,7 @@ class Routes {
   static const String profileRoute = "/profile";
   static const String companySignUp = "/companySignUp";
   static const String jobRoute = "/job";
+  static const String jobFormRoute = "/jobForm";
 
 }
 
@@ -69,6 +71,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const CompanySignUp());
       case Routes.jobRoute:
         return MaterialPageRoute(builder: (_) => const JobPage());
+      case Routes.jobFormRoute:
+        return MaterialPageRoute(builder: (_) => JobFormPage());
       default:
         return _unDefinedRout();
     }

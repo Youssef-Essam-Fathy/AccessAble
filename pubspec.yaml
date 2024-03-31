@@ -44,6 +44,7 @@ dependencies:
   cloud_firestore: ^4.15.10
   google_maps_flutter: ^2.6.0
   permission_handler: ^11.3.1
+  flutter_speed_dial: ^4.2.0
   geolocator: ^11.0.0
   location: ^5.0.3
   flutter_polyline_points: ^2.0.0

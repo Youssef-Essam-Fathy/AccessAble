@@ -29,6 +29,7 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
   String? country;
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   // List of Arabic countries and their phone codes
   final Map<String, String> countries = {
     'Algeria': '+213',
@@ -54,7 +55,6 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
     'United Arab Emirates': '+971',
     'Yemen': '+967',
   };
-
 
   @override
   Widget build(BuildContext context) {
@@ -383,13 +383,28 @@ class _IndividualSignUpState extends State<IndividualSignUp> {
                             'serviceType': serviceType,
                           });
 
+                          // Show a SnackBar with a success message
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Signed up successfully!')),
+                          );
+
                           Navigator.pushNamed(context, '/main');
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'email-already-in-use') {
-                            print('The account already exists for that email.');
+                            // Show a SnackBar with an error message
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                  content: Text(
+                                      'The account already exists for that email.')),
+                            );
                           }
                         } catch (e) {
-                          print(e);
+                          // Show a SnackBar with an error message
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                                content: Text(
+                                    'An error occurred. Please try again.')),
+                          );
                         }
                       }
                     },
