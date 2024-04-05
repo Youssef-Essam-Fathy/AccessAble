@@ -50,6 +50,7 @@ Please refer to [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of co
 
 ## Authors
 
+- **Youssef Essam** - *Initial work* - [Youssef-Essam-Fathy](https://github.com/Youssef-Essam-Fathy)
 - **Abdo Omar** - *Initial work* - [abdoomr2003](https://github.com/abdoomr2003)
 
 See the list of [contributors](https://github.com/abdoomr2003/accessable/contributors) who participated in this project.
