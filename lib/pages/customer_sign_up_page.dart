@@ -419,6 +419,7 @@ class _CustomerSignUpPageState extends State<CustomerSignUpPage> {
                           'phone': phoneController.text,
                           'about': aboutController.text,
                           'gender': gender,
+                          // ignore: equal_keys_in_map
                           'disability': disability,
                         });
 

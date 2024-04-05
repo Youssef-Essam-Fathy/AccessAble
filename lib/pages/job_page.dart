@@ -38,7 +38,7 @@ class _JobPageState extends State<JobPage> {
       appBar: AppBar(
         title: const Text('Job Page'),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_sharp),
+          icon: const Icon(Icons.search),
           onPressed: () {
             Navigator.pop(context);
           },
