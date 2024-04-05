@@ -76,27 +76,39 @@ class _JobFormPageState extends State<JobFormPage> {
         child: ListView(
           padding: const EdgeInsets.all(16.0),
           children: <Widget>[
-            // Add TextFormField for each field
+// Add TextFormField for each field
             _buildTextField(_positionController, 'Position'),
+            const SizedBox(height: 25),
             _buildTextField(_descriptionController, 'Description'),
+            const SizedBox(height: 25),
             _buildTextField(_lineOfServiceController, 'Line of Service'),
+            const SizedBox(height: 25),
             _buildTextField(_industrySectorController, 'Industry/Sector'),
+            const SizedBox(height: 25),
             _buildTextField(_specialismController, 'Specialism'),
+            const SizedBox(height: 25),
             _buildTextField(_managementLevelController, 'Management Level'),
-            _buildTextField(
-                _jobDescriptionSummaryController, 'Job Description & Summary'),
+            const SizedBox(height: 25),
+            _buildTextField(_jobDescriptionSummaryController, 'Job Description & Summary'),
+            const SizedBox(height: 25),
             _buildTextField(_preferredSkillsController, 'Preferred skills'),
-            _buildTextField(_minimumYearsExperienceRequiredController,
-                'Minimum years experience required'),
+            const SizedBox(height: 25),
+            _buildTextField(_minimumYearsExperienceRequiredController, 'Minimum years experience required'),
+            const SizedBox(height: 25),
             _buildTextField(_educationController, 'Education'),
+            const SizedBox(height: 25),
             _buildTextField(_certificationsController, 'Certifications'),
+            const SizedBox(height: 25),
             _buildTextField(_requiredSkillsController, 'Required Skills'),
+            const SizedBox(height: 25),
             _buildTextField(_optionalSkillsController, 'Optional Skills'),
+            const SizedBox(height: 25),
             _buildTextField(_desiredLanguagesController, 'Desired Languages'),
-            _buildTextField(
-                _travelRequirementsController, 'Travel Requirements'),
+            const SizedBox(height: 25),
+            _buildTextField(_travelRequirementsController, 'Travel Requirements'),
+            const SizedBox(height: 25),
             _buildTextField(_emailToConnectController, 'Email to connect'),
-            ElevatedButton(
+            const SizedBox(height: 25),            ElevatedButton(
               onPressed: () async {
                 if (_formKey.currentState!.validate()) {
                   // Check if job already exists in 'work' collection
@@ -150,24 +162,31 @@ class _JobFormPageState extends State<JobFormPage> {
   }
 
   Widget _buildTextField(TextEditingController controller, String label) {
-    return TextFormField(
-      controller: controller,
-      decoration: InputDecoration(
-        labelText: label,
-      ),
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Please enter a $label';
-        }
-        if (label == 'Email to connect') {
-          // Regular expression for email validation
-          String emailRegex = r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$';
-          if (!RegExp(emailRegex).hasMatch(value)) {
-            return 'Please enter a valid email';
+    return Flexible(
+      flex: 3,
+      child: TextFormField(
+        controller: controller,
+        decoration: InputDecoration(
+          labelText: label,
+          border: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30.0)),
+          ),
+          hintText: 'Enter $label',
+        ),
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please enter a $label';
           }
-        }
-        return null;
-      },
+          if (label == 'Email to connect') {
+            // Regular expression for email validation
+            String emailRegex = r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$';
+            if (!RegExp(emailRegex).hasMatch(value)) {
+              return 'Please enter a valid email';
+            }
+          }
+          return null;
+        },
+      ),
     );
   }
 }

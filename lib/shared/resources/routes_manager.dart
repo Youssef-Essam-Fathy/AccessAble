@@ -15,7 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:accessable/pages/business_sign_up_page.dart';
 import 'package:accessable/pages/specify_user_page.dart';
 import 'package:accessable/pages/individual_sign_up_page.dart';
-import '../../pages/jop_page.dart';
+import '../../pages/job_page.dart';
 import 'strings_manager.dart';
 
 // to add new page follow that 3 steps

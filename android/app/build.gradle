@@ -6,7 +6,8 @@ plugins {
     id 'com.google.firebase.crashlytics' version '2.8.1'
 }
 
-def localProperties = new Properties()
+def localProperties
+localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
     localPropertiesFile.withReader('UTF-8') { reader ->
