@@ -2,6 +2,10 @@
 
 ## https://youtu.be/c3gOwL_9_8k
 
+## Tagline
+
+*"An easier life for people of determination."*
+
 # AccessAble
 
 Accessable is a mobile application designed to assist individuals with disabilities in transportation and employment opportunities. Our mission is to provide a seamless experience for people of determination, making their lives easier and more accessible.
@@ -29,11 +33,6 @@ Communication is at the heart of the AccessAble experience. Our integrated messa
 AccessAble is more than just a mobile app—it's a catalyst for positive change. By empowering individuals with disabilities to access transportation options and employment opportunities with ease, we are paving the way for a more inclusive society where everyone can thrive. Join us on our mission to break down barriers and create a world where accessibility is not just a goal but a reality for all.
 
 Experience the power of accessibility with AccessAble—download the app today and embark on a journey of independence, empowerment, and inclusion.
-
-
-## Slogan
-
-*"An easier life for people of determination."*
 
 ## Features
 
